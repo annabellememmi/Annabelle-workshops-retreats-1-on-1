@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>אנאבל ממי · אירועים וסדנאות</title>
+  <meta name="description" content="סדנאות, ריטריטים וערבי נשים עם אנאבל ממי.">
+  <meta name="theme-color" content="#2E4038">
+  <meta property="og:title" content="אנאבל ממי · אירועים וסדנאות">
+  <meta property="og:image" content="https://annabellememmi.github.io/memmievents/assets/img/og-reconnect.jpg">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Assistant:wght@400;600;700;800&family=Frank+Ruhl+Libre:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .events { display: grid; gap: 22px; margin-top: 2.4em; }
+    @media (min-width: 760px) { .events { grid-template-columns: repeat(2, 1fr); } }
+    .event-card { display: block; border-radius: var(--radius); overflow: hidden; background: var(--cream); color: var(--ink); text-decoration: none; box-shadow: var(--shadow); text-align: start; transition: transform .2s ease; }
+    .event-card:hover { transform: translateY(-4px); }
+    .event-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+    .event-card div { padding: 20px 22px 24px; }
+    .event-card h2 { font-size: 1.6rem; margin-bottom: .2em; }
+    .event-card p { margin: 0; color: var(--ink-soft); }
+    .event-card .eyebrow { font-size: 1.5rem; }
+  </style>
+</head>
+<body>
+  <section class="hero" style="min-height: auto; padding-block: 120px 90px;">
+    <div class="hero__content">
+      <p class="hero__kicker">סדנאות · ריטריטים · ליווי אישי</p>
+      <h1>אנאבל ממי</h1>
+      <p class="hero__tagline">צמיחה, תנועה וחיבור לעצמך — בעומק, בקלילות ועם הרבה הומור</p>
+    </div>
+  </section>
+  <main class="section section--sand">
+    <div class="wrap center">
+      <p class="eyebrow">האירועים הקרובים</p>
+      <!-- To add an event: copy a card below and point it at the new folder in events/ -->
+      <div class="events">
+        <a class="event-card" href="events/reconnect-nov-2026/">
+          <img src="assets/img/og-reconnect.jpg" alt="" loading="lazy">
+          <div>
+            <p class="eyebrow">יום חמישי · 12 בנובמבר · תלמי אלעזר</p>
+            <h2>מתחברת חזרה לעצמך בכיף</h2>
+            <p>ערב סדנאות העצמה וריקודים לנשים</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+  <footer class="footer" style="padding-bottom: 48px;">
+    <p>📞 <a href="https://wa.me/972525826993">052-5826993</a> · <a href="https://www.instagram.com/anabellos5">אינסטגרם</a></p>
+  </footer>
+</body>
+</html>
