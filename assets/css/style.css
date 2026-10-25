@@ -3,7 +3,7 @@
    Shared styles for every event landing page.
    Palette: earthy browns + forest greens, antique-orange CTAs.
    Look: deep forest darks, paper-textured lights, organic
-   quiet hairline dividers, blob shapes, a tree-ring spiral logo that sprouts a bud.
+   quiet hairline dividers, blob shapes, a spiral logo that grows into a lotus.
    Uses logical properties (inline-start/end) so an English
    (LTR) version can reuse the same file.
    ========================================================== */
@@ -119,20 +119,19 @@ body::after {
 .btn--block { width: 100%; }
 .btn[disabled] { opacity: .6; cursor: wait; transform: none; }
 
-/* ---------- logo: tree-ring spiral sprouting a tulip bud ---------- */
+/* ---------- logo: spiral growing into a lotus ---------- */
 .ring-line {
-  fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  fill: none; stroke: currentColor; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round;
   stroke-dasharray: var(--len); stroke-dashoffset: var(--len);
   animation: draw 2.6s cubic-bezier(.6, .1, .3, 1) .2s forwards;
 }
-.ring-line--echo { stroke-width: 1; opacity: .55; animation-delay: .5s; }
 .ring-line--stem { animation-duration: 1s; animation-delay: 2.6s; }
 .sprout-leaf {
   fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round;
   opacity: 0; transform-box: fill-box; transform-origin: bottom center; transform: scale(.4);
   animation: leaf .8s ease 3.4s forwards;
 }
-.sprout-leaf.is-filled { fill: currentColor; }
+.lotus path { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linejoin: round; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes leaf { to { opacity: 1; transform: none; } }
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -240,7 +239,7 @@ body::after {
   padding-top: 13px;
   color: var(--mist);
 }
-.badge__mark { position: absolute; inset: 40px; color: var(--glow); }
+.badge__mark { position: absolute; inset: 34px; color: var(--cream); }
 .badge__mark svg { width: 100%; height: 100%; }
 .story__quote {
   font-family: var(--font-display); font-weight: 400;
