@@ -318,7 +318,7 @@ body::after {
   width: 46%; aspect-ratio: 9 / 15;
   border-radius: var(--radius); overflow: hidden;
   background: var(--night);
-  box-shadow: 0 0 0 6px var(--cream), var(--shadow);
+  box-shadow: 0 0 0 6px var(--bg, var(--cream)), var(--shadow);
 }
 .video-card video { width: 100%; height: 100%; object-fit: cover; }
 .video-card__unmute {
