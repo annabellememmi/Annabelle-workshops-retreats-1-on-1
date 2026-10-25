@@ -22,47 +22,6 @@
     else el.textContent = `מחיר מוקדמות ${EV.earlyBird.price} ₪`;
   });
 
-  /* ---------- hero spiral ---------- */
-  const spiral = $("[data-spiral]");
-  if (spiral) {
-    const NS = "http://www.w3.org/2000/svg";
-    const svg = document.createElementNS(NS, "svg");
-    svg.setAttribute("viewBox", "0 0 400 400");
-    svg.setAttribute("aria-hidden", "true");
-    const path = (turns, rMax, phase, wobble) => {
-      let d = "";
-      const steps = 900;
-      for (let i = 0; i <= steps; i++) {
-        const t = i / steps;
-        const a = t * turns * Math.PI * 2 + phase;
-        const r = 3 + Math.pow(t, 0.92) * rMax * (1 + wobble * Math.sin(a * 3.1) * 0.03);
-        d += (i ? "L" : "M") + (200 + r * Math.cos(a)).toFixed(2) + " " + (200 + r * Math.sin(a)).toFixed(2);
-      }
-      return d;
-    };
-    [["main", 5.2, 188, 0, 1], ["echo", 5.2, 176, Math.PI * 0.85, 1.6]].forEach(([kind, turns, r, ph, w]) => {
-      const p = document.createElementNS(NS, "path");
-      p.setAttribute("d", path(turns, r, ph, w));
-      p.setAttribute("class", "spiral-line spiral-line--" + kind);
-      svg.appendChild(p);
-    });
-    // little seeds scattered along the outer arms
-    for (let i = 0; i < 26; i++) {
-      const t = 0.35 + Math.random() * 0.65;
-      const a = t * 5.2 * Math.PI * 2 + (Math.random() - 0.5) * 0.5;
-      const r = 3 + t * 188 + (Math.random() * 16 - 8);
-      const c = document.createElementNS(NS, "circle");
-      c.setAttribute("cx", (200 + r * Math.cos(a)).toFixed(1));
-      c.setAttribute("cy", (200 + r * Math.sin(a)).toFixed(1));
-      c.setAttribute("r", (0.8 + Math.random() * 1.8).toFixed(1));
-      c.setAttribute("class", "spiral-seed");
-      c.style.animationDelay = (1.5 + t * 3).toFixed(2) + "s";
-      svg.appendChild(c);
-    }
-    spiral.appendChild(svg);
-    $$(".spiral-line", svg).forEach((p) => p.style.setProperty("--len", Math.ceil(p.getTotalLength())));
-  }
-
   /* ---------- reveal on scroll ---------- */
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
@@ -73,8 +32,8 @@
     $$(".reveal").forEach((el) => el.classList.add("is-in"));
   }
 
-  /* ---------- sticky CTA appears after the hero ---------- */
-  const sticky = $(".sticky-cta");
+  /* ---------- floating CTA appears after the hero ---------- */
+  const sticky = $(".float-cta");
   const hero = $(".hero");
   const tickets = $("#tickets");
   if (sticky && hero && "IntersectionObserver" in window) {
@@ -82,7 +41,6 @@
     const update = () => {
       const show = !heroVisible && !ticketsVisible;
       sticky.classList.toggle("is-visible", show);
-      document.body.classList.toggle("has-sticky", show);
     };
     new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; update(); }).observe(hero);
     if (tickets) new IntersectionObserver(([e]) => { ticketsVisible = e.isIntersecting; update(); }, { threshold: 0.3 }).observe(tickets);

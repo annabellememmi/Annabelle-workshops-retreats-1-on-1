@@ -22,18 +22,21 @@
     .event-card div { padding: 20px 22px 24px; }
     .event-card h2 { font-size: 1.6rem; margin-bottom: .2em; }
     .event-card p { margin: 0; color: var(--ink-soft); }
-    .event-card .eyebrow { font-size: 1.5rem; }
+    .event-card .eyebrow { letter-spacing: .08em; }
+    .event-card .eyebrow::before { display: none; }
   </style>
 </head>
 <body>
-  <section class="hero" style="min-height: auto; padding-block: 120px 90px;">
+  <section class="hero" style="min-height: 70svh;">
+    <img class="hero__bg" src="assets/img/workshop-circle.jpg" alt="">
     <div class="hero__content">
-      <p class="hero__kicker">סדנאות · ריטריטים · ליווי אישי</p>
+      <span class="logo__mark" data-spiral="logo" style="display:block;margin:0 auto 1.2em;color:var(--cream)"></span>
+      <p class="kicker">סדנאות · ריטריטים · ליווי אישי</p>
       <h1>אנאבל ממי</h1>
       <p class="hero__tagline">צמיחה, תנועה וחיבור לעצמך — בעומק, בקלילות ועם הרבה הומור</p>
     </div>
   </section>
-  <main class="section section--sand">
+  <main class="section section--paper">
     <div class="wrap center">
       <p class="eyebrow">האירועים הקרובים</p>
       <!-- To add an event: copy a card below and point it at the new folder in events/ -->
@@ -52,5 +55,6 @@
   <footer class="footer" style="padding-bottom: 48px;">
     <p>📞 <a href="https://wa.me/972525826993">052-5826993</a> · <a href="https://www.instagram.com/anabellos5">אינסטגרם</a></p>
   </footer>
+  <script src="assets/js/spiral.js"></script>
 </body>
 </html>

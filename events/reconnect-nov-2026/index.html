@@ -47,39 +47,41 @@
 <body>
 
   <header class="topbar">
-    <a class="brand" href="../../">אנאבל ממי</a>
     <button class="sound-toggle" type="button" data-sound-toggle aria-pressed="false" aria-label="הפעלת צלילי טבע">
       <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span>
       <span data-sound-label>צלילי טבע</span>
     </button>
+    <a class="logo" href="../../">
+      <span class="logo__mark" data-spiral="logo"></span>
+      <span class="logo__name">אנאבל ממי</span>
+    </a>
+    <span aria-hidden="true"></span>
   </header>
 
   <main>
     <!-- ================= HERO ================= -->
     <section class="hero">
-      <div class="hero__spiral" data-spiral></div>
+      <img class="hero__bg" src="../../assets/img/workshop-circle.jpg" alt="" fetchpriority="high">
       <div class="hero__content">
-        <p class="hero__kicker">ערב סדנאות העצמה וריקודים לנשים</p>
+        <p class="kicker">ערב סדנאות העצמה וריקודים לנשים</p>
         <h1>מתחברת חזרה<br>לעצמך <em>בכיף</em></h1>
         <p class="hero__tagline">לנשים שרוצות להרגיש מועצמות, קלילות ומחוברות יותר</p>
-        <ul class="hero__meta">
-          <li>יום חמישי · 12 בנובמבר</li>
-          <li><bdi>18:00–23:00</bdi></li>
-          <li>תלמי אלעזר</li>
-        </ul>
-        <div class="hero__cta">
-          <a class="btn btn--lg" href="#tickets" data-open-register>אני בפנים</a>
-        </div>
-        <p class="hero__price"><span data-price-label>מחיר מוקדמות</span>: <span data-price>170</span> ₪ · מספר המקומות מוגבל</p>
+        <p class="hero__meta"><span>יום חמישי · 12 בנובמבר</span><i>·</i><span><bdi>18:00–23:00</bdi> · תלמי אלעזר</span></p>
+        <a class="btn btn--lg" href="#tickets" data-open-register>אני בפנים</a>
+        <p class="hero__price"><span data-price-label>מחיר מוקדמות</span> <span data-price>170</span> ₪ · מספר המקומות מוגבל</p>
       </div>
-      <a class="hero__scroll" href="#story" aria-label="גללי למטה"></a>
     </section>
 
     <!-- ================= STORY ================= -->
-    <section class="section section--sand story" id="story">
-      <div class="wrap wrap--narrow reveal">
+    <section class="section section--paper story" id="story">
+      <svg class="edge" aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60V34C90 18 170 40 280 30S470 6 600 20s210 34 330 18 190-30 300-14 150 26 210 10V60Z"/></svg>
+      <div class="badge" aria-hidden="true">
+        <span class="badge__ring" data-ring="עומק • צחוק • שחרור • ריחוף • עוצמה פנימית • "></span>
+        <span class="badge__mark" data-spiral="badge"></span>
+      </div>
+      <div class="wrap wrap--narrow center reveal">
         <p class="eyebrow">ערב אחד. כל המרכיבים.</p>
-        <p class="story__quote">ערב אחד שבו יהיו כל המרכיבים —</p>
+        <p class="story__quote">ערב אחד שבו יהיו כל המרכיבים</p>
         <ul class="ingredients">
           <li>העומק</li>
           <li>הצחוק</li>
@@ -91,26 +93,20 @@
     </section>
 
     <!-- ================= FOR WHO ================= -->
-    <section class="section">
-      <div class="wrap split">
-        <div class="reveal">
-          <p class="eyebrow">למי הערב הזה?</p>
-          <h2 class="section-title">ערב שכולו בשבילך</h2>
-          <p class="lead">לנשים שרוצות לחוות התרוממות רוח, שמרגישות כבויות, או שקצת איבדו את עצמן בתוך מסע החיים העמוס שכולנו עוברות.</p>
-          <p>אני מזמינה אותך לערב שכולו עבורך — להשקיע בעצמך.<br>
-            ניגע בעומקים, נכיר את עצמנו טוב יותר, נאהב את עצמנו יותר ונחגוג אותנו — נשים מהממות ויפות.</p>
-          <a class="btn" href="#tickets" data-open-register>אני בפנים</a>
-        </div>
-        <div class="arch-wrap reveal">
-          <div class="arch">
-            <img src="../../assets/img/workshop-circle.jpg" alt="מעגל נשים בסדנה של אנאבל תחת שמי ערב ואורות חמים" loading="lazy" width="1200" height="1446">
-          </div>
-        </div>
+    <section class="section section--cream">
+      <div class="wrap wrap--narrow center reveal">
+        <p class="eyebrow">למי הערב הזה?</p>
+        <h2 class="section-title section-title--rule">ערב שכולו בשבילך</h2>
+        <p class="lead">לנשים שרוצות לחוות התרוממות רוח, שמרגישות כבויות, או שקצת איבדו את עצמן בתוך מסע החיים העמוס שכולנו עוברות.</p>
+        <p>אני מזמינה אותך לערב שכולו עבורך — להשקיע בעצמך.<br>
+          ניגע בעומקים, נכיר את עצמנו טוב יותר, נאהב את עצמנו יותר ונחגוג אותנו — נשים מהממות ויפות.</p>
+        <a class="btn" href="#tickets" data-open-register>אני בפנים</a>
       </div>
     </section>
 
     <!-- ================= WHAT YOU GET ================= -->
-    <section class="section section--mist">
+    <section class="section section--night">
+      <svg class="edge" aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60V22c120 18 200-10 330 6s220 30 350 12 200-26 330-10 190 28 290 12 100-14 140-8V60Z"/></svg>
       <div class="wrap">
         <div class="center reveal">
           <p class="eyebrow">עם מה תצאי מהערב</p>
@@ -118,38 +114,37 @@
         </div>
         <ul class="benefits">
           <li class="benefit reveal">
-            <span class="benefit__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg></span>
+            <span class="blob-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg></span>
             <p>הפסקה של כמה שעות מהטרדות והמטלות של היום־יום</p>
           </li>
           <li class="benefit reveal">
-            <span class="benefit__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <span class="blob-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></span>
             <p>מודעות גבוהה יותר לעצמך ולדפוסים שמנהלים אותך</p>
           </li>
           <li class="benefit reveal">
-            <span class="benefit__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2.5-3 4.5-3 7 0s4.5 3 7 0 4.5-3 6 0"/><path d="M2 17c2.5-3 4.5-3 7 0s4.5 3 7 0 4.5-3 6 0" opacity=".5"/><path d="M2 7c2.5-3 4.5-3 7 0s4.5 3 7 0 4.5-3 6 0" opacity=".5"/></svg></span>
+            <span class="blob-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2.5-3 4.5-3 7 0s4.5 3 7 0 4.5-3 6 0"/><path d="M2 17c2.5-3 4.5-3 7 0s4.5 3 7 0 4.5-3 6 0" opacity=".5"/><path d="M2 7c2.5-3 4.5-3 7 0s4.5 3 7 0 4.5-3 6 0" opacity=".5"/></svg></span>
             <p>שחרור וכיף לגוף</p>
           </li>
           <li class="benefit reveal">
-            <span class="benefit__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4 0 7-2.7 7-6.6 0-3.4-2.4-5.6-4-7.4-.4 2-1.4 3-2.6 3.4.4-3.6-1.4-6.9-4.4-8.4.4 3.4-3 6-3 11.2C5 19.3 8 22 12 22Z"/></svg></span>
+            <span class="blob-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4 0 7-2.7 7-6.6 0-3.4-2.4-5.6-4-7.4-.4 2-1.4 3-2.6 3.4.4-3.6-1.4-6.9-4.4-8.4.4 3.4-3 6-3 11.2C5 19.3 8 22 12 22Z"/></svg></span>
             <p>תחושת העצמה</p>
           </li>
           <li class="benefit reveal">
-            <span class="benefit__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8 4.8-2.2Z"/></svg></span>
+            <span class="blob-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8 4.8-2.2Z"/></svg></span>
             <p>יכולת טובה יותר לזהות וללכת על מה שאת רוצה עמוק בפנים</p>
           </li>
-          <li class="benefit benefit--wide reveal">
-            <a class="btn" href="#tickets" data-open-register>אני בפנים</a>
-          </li>
         </ul>
+        <div class="center reveal"><a class="btn" href="#tickets" data-open-register>אני בפנים</a></div>
       </div>
     </section>
 
     <!-- ================= AGENDA ================= -->
-    <section class="section section--forest" id="agenda">
+    <section class="section section--paper" id="agenda">
+      <svg class="edge" aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60V30c70-14 150 18 260 10S450 8 590 26s240 18 370 0 220-12 300 6 120 10 180 0V60Z"/></svg>
       <div class="wrap wrap--narrow">
-        <div class="reveal">
+        <div class="center reveal">
           <p class="eyebrow">איך ייראה הערב</p>
-          <h2 class="section-title">מהלך הערב</h2>
+          <h2 class="section-title section-title--rule">מהלך הערב</h2>
         </div>
         <ol class="timeline">
           <li class="reveal"><time>18:00</time><div><h3>פתיחת דלתות ומינגלינג</h3><p>מגיעות, מתמקמות, נושמות ומכירות</p></div></li>
@@ -164,17 +159,17 @@
     </section>
 
     <!-- ================= ABOUT + VIBE ================= -->
-    <section class="section section--sand" id="about">
+    <section class="section section--forest" id="about">
+      <svg class="edge" aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60V34C90 18 170 40 280 30S470 6 600 20s210 34 330 18 190-30 300-14 150 26 210 10V60Z"/></svg>
       <div class="wrap vibe">
         <div class="collage reveal">
-          <div class="arch collage__photo">
+          <div class="blob-photo collage__photo">
             <img src="../../assets/img/annabelle.jpg" alt="אנאבל ממי" loading="lazy" width="900" height="1200">
           </div>
-          <div class="phone collage__video">
+          <div class="video-card collage__video">
             <video data-vibe-video src="../../assets/video/annabelle-vibe.mp4" poster="../../assets/img/annabelle-vibe-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="סרטון קצר של אנאבל"></video>
-            <button class="phone__unmute" type="button" data-unmute>🔈 עם סאונד</button>
+            <button class="video-card__unmute" type="button" data-unmute>🔈 עם סאונד</button>
           </div>
-          <span class="sticker">היי, זו אני 👋</span>
         </div>
         <div class="reveal">
           <p class="eyebrow">מי אני</p>
@@ -187,11 +182,12 @@
     </section>
 
     <!-- ================= PRACTICAL ================= -->
-    <section class="section" id="faq">
+    <section class="section section--paper" id="faq">
+      <svg class="edge" aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60V22c120 18 200-10 330 6s220 30 350 12 200-26 330-10 190 28 290 12 100-14 140-8V60Z"/></svg>
       <div class="wrap wrap--narrow">
         <div class="center reveal">
           <p class="eyebrow">כל מה שצריך לדעת</p>
-          <h2 class="section-title">פרטים חשובים</h2>
+          <h2 class="section-title section-title--rule">פרטים חשובים</h2>
         </div>
         <div class="faq reveal">
           <details open>
@@ -222,6 +218,7 @@
 
     <!-- ================= TICKETS ================= -->
     <section class="section section--earth" id="tickets">
+      <svg class="edge" aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60V30c70-14 150 18 260 10S450 8 590 26s240 18 370 0 220-12 300 6 120 10 180 0V60Z"/></svg>
       <div class="wrap center">
         <div class="reveal">
           <p class="eyebrow">ההזמנה שלך</p>
@@ -246,6 +243,7 @@
 
     <!-- ================= CONTACT ================= -->
     <section class="section section--sand" id="contact">
+      <svg class="edge" aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60V34C90 18 170 40 280 30S470 6 600 20s210 34 330 18 190-30 300-14 150 26 210 10V60Z"/></svg>
       <div class="wrap center">
         <div class="reveal">
           <p class="talk-to-me">מרגישה שהאירוע קורא לך ועדיין מתלבטת? <b>דברי איתי.</b><br>
@@ -273,15 +271,12 @@
   </main>
 
   <footer class="footer">
-    <a class="brand" href="../../">אנאבל ממי</a>
+    <a class="logo" href="../../"><span class="logo__mark" data-spiral="logo"></span><span class="logo__name">אנאבל ממי</span></a>
     <p>סדנאות · ריטריטים · ליווי אישי</p>
   </footer>
 
-  <!-- sticky CTA -->
-  <div class="sticky-cta" aria-hidden="false">
-    <div class="sticky-cta__info"><strong>12.11 · תלמי אלעזר</strong><span data-price-label>מחיר מוקדמות</span> <span data-price>170</span> ₪</div>
-    <button class="btn" type="button" data-open-register>אני בפנים</button>
-  </div>
+  <!-- floating CTA (bottom-left) -->
+  <button class="float-cta" type="button" data-open-register>אני בפנים</button>
 
   <!-- floating WhatsApp -->
   <a class="wa-float" href="https://wa.me/972525826993?text=%D7%94%D7%99%D7%99%20%D7%90%D7%A0%D7%90%D7%91%D7%9C%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93%20%D7%A2%D7%9C%20%D7%A2%D7%A8%D7%91%20%D7%94%D7%A0%D7%A9%D7%99%D7%9D%20%D7%94%D7%A7%D7%A8%D7%95%D7%91" target="_blank" rel="noopener" aria-label="שלחי לי הודעה בוואטסאפ">
@@ -355,6 +350,7 @@
     </div>
   </dialog>
 
+  <script src="../../assets/js/spiral.js"></script>
   <script src="../../assets/js/event.js"></script>
   <script src="../../assets/js/nature-sound.js"></script>
 </body>
