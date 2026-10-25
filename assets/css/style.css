@@ -531,3 +531,5 @@ body::after {
 @media (max-width: 480px) { .lines { font-size: min(1.16em, 4.25vw); } }
 @media (max-width: 340px) { .lines { white-space: normal; } }
 .heart { display: inline-block; width: .9em; height: .9em; vertical-align: -.08em; color: var(--moss); }
+.faq-lines { white-space: nowrap; }
+@media (max-width: 480px) { .faq-lines { font-size: min(1em, 3.85vw); white-space: normal; } }
