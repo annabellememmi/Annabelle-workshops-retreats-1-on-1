@@ -79,7 +79,11 @@
   const tickets = $("#tickets");
   if (sticky && hero && "IntersectionObserver" in window) {
     let heroVisible = true, ticketsVisible = false;
-    const update = () => sticky.classList.toggle("is-visible", !heroVisible && !ticketsVisible);
+    const update = () => {
+      const show = !heroVisible && !ticketsVisible;
+      sticky.classList.toggle("is-visible", show);
+      document.body.classList.toggle("has-sticky", show);
+    };
     new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; update(); }).observe(hero);
     if (tickets) new IntersectionObserver(([e]) => { ticketsVisible = e.isIntersecting; update(); }, { threshold: 0.3 }).observe(tickets);
   }

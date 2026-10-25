@@ -540,3 +540,15 @@ body::after {
 @media (max-width: 600px) {
   .arch-wrap::before { inset: -8px 8px 8px -8px; }
 }
+
+/* ---------- floating WhatsApp (physical bottom-right) ---------- */
+.wa-float {
+  position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 60;
+  width: 58px; height: 58px; display: grid; place-items: center;
+  border-radius: 50%; background: #25D366; color: #fff;
+  box-shadow: 0 10px 24px -8px rgba(0, 0, 0, .45);
+  transition: transform .2s ease, bottom .35s ease;
+}
+.wa-float:hover { transform: scale(1.07); }
+.wa-float svg { width: 32px; height: 32px; }
+@media (max-width: 879px) { body.has-sticky .wa-float { bottom: calc(86px + env(safe-area-inset-bottom)); } }
