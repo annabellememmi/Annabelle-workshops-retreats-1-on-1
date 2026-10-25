@@ -34,9 +34,8 @@
 
 ## פרסום ב־GitHub Pages — פעם אחת
 
-1. **Settings ← General** — לשנות את שם המאגר ל־`memmievents`.
-2. באותו עמוד, למטה ב־Danger Zone — **Change visibility ← Public** (GitHub Pages בחינם עובד רק למאגר ציבורי).
-3. **Settings ← Pages** — תחת Branch לבחור `main` ותיקייה `/ (root)` ← Save.
-4. אחרי דקה–שתיים הדף באוויר:
-   - עמוד הבית: `https://annabellememmi.github.io/memmievents/`
-   - האירוע: `https://annabellememmi.github.io/memmievents/events/reconnect-nov-2026/`
+1. **Settings ← General**, למטה ב־Danger Zone — **Change visibility ← Public** (GitHub Pages בחינם עובד רק למאגר ציבורי).
+2. **Settings ← Pages** — תחת Branch לבחור `main` ותיקייה `/ (root)` ← Save.
+3. אחרי דקה–שתיים הדף באוויר:
+   - עמוד הבית: `https://annabellememmi.github.io/Annabelle-workshops-retreats-1-on-1/`
+   - האירוע: `https://annabellememmi.github.io/Annabelle-workshops-retreats-1-on-1/events/reconnect-nov-2026/`
