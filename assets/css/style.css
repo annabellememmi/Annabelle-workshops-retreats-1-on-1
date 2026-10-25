@@ -3,7 +3,7 @@
    Shared styles for every event landing page.
    Palette: earthy browns + forest greens, antique-orange CTAs.
    Look: deep forest darks, paper-textured lights, organic
-   quiet hairline dividers, blob shapes, a spiral-sprout logo.
+   quiet hairline dividers, blob shapes, a tree-ring spiral logo that sprouts a bud.
    Uses logical properties (inline-start/end) so an English
    (LTR) version can reuse the same file.
    ========================================================== */
@@ -119,12 +119,13 @@ body::after {
 .btn--block { width: 100%; }
 .btn[disabled] { opacity: .6; cursor: wait; transform: none; }
 
-/* ---------- sprout spiral logo ---------- */
+/* ---------- logo: tree-ring spiral sprouting a tulip bud ---------- */
 .ring-line {
   fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
   stroke-dasharray: var(--len); stroke-dashoffset: var(--len);
   animation: draw 2.6s cubic-bezier(.6, .1, .3, 1) .2s forwards;
 }
+.ring-line--echo { stroke-width: 1; opacity: .55; animation-delay: .5s; }
 .ring-line--stem { animation-duration: 1s; animation-delay: 2.6s; }
 .sprout-leaf {
   fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round;
@@ -144,7 +145,7 @@ body::after {
   color: var(--cream);
 }
 .logo { display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; }
-.logo__mark { width: clamp(58px, 7vw, 76px); aspect-ratio: 1; }
+.logo__mark { width: clamp(66px, 8vw, 86px); aspect-ratio: 1; }
 .logo__mark svg { width: 100%; height: 100%; }
 .logo__tagline { font: 600 .82rem/1.4 var(--font-body); letter-spacing: .2em; margin-top: 6px; }
 .sound-toggle {
