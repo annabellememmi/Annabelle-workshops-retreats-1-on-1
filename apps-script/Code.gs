@@ -15,7 +15,7 @@ function setup() {
   sh.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight('bold').setBackground('#DAD8D1');
   sh.setFrozenRows(1);
   sh.setRightToLeft(true);
-  sh.getRange(2, COL.paid, sh.getMaxRows() - 1, 2).insertCheckboxes();
+  sh.setColumnWidth(7, 280);
 }
 
 function doPost(e) {
@@ -31,14 +31,14 @@ function doPost(e) {
       if (row) {
         sh.getRange(row, 1, 1, values.length).setValues([values]);
       } else {
-        sh.appendRow(values.concat(['', 'נרשמה – טרם שילמה']));
+        sh.appendRow(values.concat(['', 'נרשמה, טרם שילמה']));
         sh.getRange(sh.getLastRow(), COL.paid, 1, 2).insertCheckboxes();
       }
     } else if (row && p.action === 'payment_click') {
       sh.getRange(row, COL.method).setValue(p.method === 'bit' ? 'ביט' : 'פייבוקס');
       sh.getRange(row, COL.status).setValue('עברה לדף התשלום');
     } else if (row && p.action === 'paid_reported') {
-      sh.getRange(row, COL.status).setValue('דיווחה ששילמה – לאמת');
+      sh.getRange(row, COL.status).setValue('דיווחה ששילמה, לאמת');
     }
     return ContentService.createTextOutput('ok');
   } finally {
