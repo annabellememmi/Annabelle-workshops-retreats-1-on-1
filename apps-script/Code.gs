@@ -1,6 +1,7 @@
 /**
- * Saves registrations from the event landing pages into this Google Sheet.
- * Setup steps (Hebrew) are in apps-script/README.md.
+ * Saves registrations from the event landing pages into a Google Sheet.
+ * Works inside a sheet (Extensions > Apps Script) or as a standalone
+ * project at script.google.com, where setup() creates the sheet itself.
  */
 const SHEET_NAME = 'הרשמות';
 const HEADERS = [
@@ -9,13 +10,14 @@ const HEADERS = [
 ];
 const COL = { id: 2, method: 9, status: 10, paid: 11 };
 
-/** Run once from the editor to create the sheet with headers and checkboxes. */
+/** Run once from the editor: creates the sheet and its headers, and logs its link. */
 function setup() {
   const sh = getSheet_();
   sh.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight('bold').setBackground('#DAD8D1');
   sh.setFrozenRows(1);
   sh.setRightToLeft(true);
   sh.setColumnWidth(7, 280);
+  Logger.log('הגיליון מוכן: ' + sh.getParent().getUrl());
 }
 
 function doPost(e) {
@@ -47,7 +49,17 @@ function doPost(e) {
 }
 
 function getSheet_() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) {
+    const props = PropertiesService.getScriptProperties();
+    const id = props.getProperty('SHEET_ID');
+    if (id) {
+      ss = SpreadsheetApp.openById(id);
+    } else {
+      ss = SpreadsheetApp.create('הרשמות לאירועים');
+      props.setProperty('SHEET_ID', ss.getId());
+    }
+  }
   return ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
 }
 
