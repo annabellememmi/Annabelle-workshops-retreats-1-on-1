@@ -531,6 +531,7 @@ body::after {
 
 /* venue video between "for who" and "what awaits" */
 .venue__frame {
+  position: relative;
   width: min(100%, 400px); margin-inline: auto; aspect-ratio: 540 / 870;
   border-radius: var(--radius); overflow: hidden; background: var(--night);
   box-shadow: var(--shadow);

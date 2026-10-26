@@ -46,17 +46,20 @@
     if (tickets) new IntersectionObserver(([e]) => { ticketsVisible = e.isIntersecting; update(); }, { threshold: 0.3 }).observe(tickets);
   }
 
-  /* ---------- vibe video: autoplay muted, tap to hear ---------- */
-  const video = $("[data-vibe-video]");
-  const unmute = $("[data-unmute]");
-  if (video && unmute) {
-    unmute.addEventListener("click", () => {
-      video.muted = !video.muted;
-      if (!video.muted) { video.currentTime = 0; video.play(); }
-      unmute.textContent = video.muted ? "🔈 עם סאונד" : "🔇 בלי סאונד";
-      document.dispatchEvent(new CustomEvent("vibe-video-sound", { detail: !video.muted }));
+  /* ---------- videos: autoplay muted, tap to hear (only one plays sound at a time) ---------- */
+  const soundVideos = $$("[data-unmute]").map((btn) => {
+    const video = btn.parentElement.querySelector("video");
+    const label = () => (btn.textContent = video.muted ? "🔈 עם סאונד" : "🔇 בלי סאונד");
+    btn.addEventListener("click", () => {
+      const turnOn = video.muted;
+      soundVideos.forEach((o) => { if (o.video !== video) { o.video.muted = true; o.label(); } });
+      video.muted = !turnOn;
+      if (turnOn) { video.currentTime = 0; video.play(); }
+      label();
+      document.dispatchEvent(new CustomEvent("vibe-video-sound", { detail: turnOn }));
     });
-  }
+    return { video, label };
+  });
 
   /* ---------- registration dialog ---------- */
   const dlg = $("#register");
