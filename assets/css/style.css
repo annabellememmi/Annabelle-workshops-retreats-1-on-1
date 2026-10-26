@@ -538,11 +538,3 @@ body::after {
 }
 @media (min-width: 900px) { .venue__frame { width: 440px; } }
 .venue__frame video { width: 100%; height: 100%; object-fit: cover; }
-
-/* altar photo at the top of the evening's agenda */
-.altar {
-  width: min(72vw, 300px); aspect-ratio: 1; margin: 0 auto 2.4em;
-  border-radius: 50%; overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(168, 181, 145, .3), 0 0 60px 6px rgba(140, 90, 170, .28);
-}
-.altar img { width: 100%; height: 100%; object-fit: cover; }
