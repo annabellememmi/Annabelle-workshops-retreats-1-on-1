@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Assistant:wght@400;600;700;800&family=Frank+Ruhl+Libre:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/style.css?v=20261025e">
+  <link rel="stylesheet" href="../../assets/css/style.css?v=20261026a">
 
   <script>
     /* ===== Event settings: edit here ===== */
@@ -84,25 +84,17 @@
       </div>
     </section>
 
-    <!-- ================= ABOUT + VIBE ================= -->
-    <section class="section section--sand" id="about">
-      <div class="wrap vibe">
-        <div class="video-card video-card--lg reveal">
-          <video data-vibe-video src="../../assets/video/annabelle-vibe.mp4" poster="../../assets/img/annabelle-vibe-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="סרטון קצר של אנאבל"></video>
-          <button class="video-card__unmute" type="button" data-unmute>🔈 עם סאונד</button>
-        </div>
-        <div class="reveal">
-          <p class="eyebrow">מי אני</p>
-          <h2 class="about__name">אנאבל ממי</h2>
-          <p class="about__role">מלווה תהליכי צמיחה דרך אימון מנטלי ורגשי · מובילה סדנאות התפתחות ותנועה בארץ ובעולם</p>
-          <p class="lead">אני מאמינה באיזון בין רוחניות לגשמיות פרקטית, בין עומק לקלילות וכל זה עטוף בהרבה הומור ומשחקיות.</p>
-          <p class="signature">מחכה לראות אותך,<br>אנאבל <svg class="heart" viewBox="0 0 24 24" aria-label="לב"><path fill="currentColor" d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 2.9 4.5 6.6 4.5c2.1 0 3.5 1.1 4.4 2.5.9-1.4 2.3-2.5 4.4-2.5 3.7 0 5.7 3.8 4.2 7.2C19.5 16.4 12 21 12 21Z"/></svg></p>
+    <!-- ================= VENUE VIDEO ================= -->
+    <section class="section section--sand venue">
+      <div class="wrap center">
+        <div class="venue__frame reveal">
+          <video src="../../assets/video/venue-circle.mp4" poster="../../assets/img/venue-circle-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="סרטון קצר ממעגל נשים"></video>
         </div>
       </div>
     </section>
 
     <!-- ================= WHAT YOU GET ================= -->
-    <section class="section section--paper">
+    <section class="section section--paper" id="awaits">
       <div class="wrap">
         <div class="center reveal">
           <p class="eyebrow">מה מחכה לך</p>
@@ -125,9 +117,27 @@
       </div>
     </section>
 
+    <!-- ================= ABOUT + VIBE ================= -->
+    <section class="section section--cream" id="about">
+      <div class="wrap vibe">
+        <div class="video-card video-card--lg reveal">
+          <video data-vibe-video src="../../assets/video/annabelle-vibe.mp4" poster="../../assets/img/annabelle-vibe-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="סרטון קצר של אנאבל"></video>
+          <button class="video-card__unmute" type="button" data-unmute>🔈 עם סאונד</button>
+        </div>
+        <div class="reveal">
+          <p class="eyebrow">מי אני</p>
+          <h2 class="about__name">אנאבל ממי</h2>
+          <p class="about__role">מלווה תהליכי צמיחה דרך אימון מנטלי ורגשי · מובילה סדנאות התפתחות ותנועה בארץ ובעולם</p>
+          <p class="lead">אני מאמינה באיזון בין רוחניות לגשמיות פרקטית, בין עומק לקלילות וכל זה עטוף בהרבה הומור ומשחקיות.</p>
+          <p class="signature">מחכה לראות אותך,<br>אנאבל <svg class="heart" viewBox="0 0 24 24" aria-label="לב"><path fill="currentColor" d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 2.9 4.5 6.6 4.5c2.1 0 3.5 1.1 4.4 2.5.9-1.4 2.3-2.5 4.4-2.5 3.7 0 5.7 3.8 4.2 7.2C19.5 16.4 12 21 12 21Z"/></svg></p>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= AGENDA ================= -->
     <section class="section section--night" id="agenda">
       <div class="wrap wrap--narrow">
+        <figure class="altar reveal"><img src="../../assets/img/altar.jpg" alt="מזבח נרות עם פרח לוטוס סגול במרכז" loading="lazy" width="900" height="900"></figure>
         <div class="center reveal">
           <p class="eyebrow">איך ייראה הערב</p>
           <h2 class="section-title section-title--rule">מהלך הערב</h2>
@@ -137,7 +147,7 @@
           <li class="reveal"><time>18:30</time><div><h3>מתחברות לעצמנו</h3><p>הזהויות בתוכי: מי מנהלת את חיי?</p></div></li>
           <li class="reveal"><time>20:00</time><div><h3>שותות ומנשנשות</h3><p>הפסקה סביב שולחן השפע</p></div></li>
           <li class="reveal"><time>20:30</time><div><h3>חוגגות את הגוף שלנו</h3><p>עבודת אגן וטוורק</p></div></li>
-          <li class="reveal is-highlight"><time>21:30</time><div><h3>חוגגות אותנו</h3><p>מסיבת ריקוד חופשי עם די ג׳יי סולטנה</p></div></li>
+          <li class="reveal is-highlight"><time>21:30</time><div><h3>חוגגות אותנו</h3><p>מסיבת ריקוד חופשי עם דיג׳יי</p></div></li>
           <li class="reveal"><time>23:00</time><div><h3>עושות מה שרוצות</h3><p>מי שרוצה להישאר מוזמנת להמשיך איתנו: תהיה מדורה, יהיו פינות ישיבה ואווירה</p></div></li>
           <li class="reveal"><time>00:00</time><div><h3>נישוקים, חיבוקים ולהתראות בקרוב <svg class="heart" viewBox="0 0 24 24" aria-label="לב"><path fill="currentColor" d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 2.9 4.5 6.6 4.5c2.1 0 3.5 1.1 4.4 2.5.9-1.4 2.3-2.5 4.4-2.5 3.7 0 5.7 3.8 4.2 7.2C19.5 16.4 12 21 12 21Z"/></svg></h3></div></li>
         </ol>
@@ -212,7 +222,7 @@
     <section class="section section--sand" id="contact">
       <div class="wrap center">
         <div class="reveal">
-          <p class="talk-to-me">רוצה לשמור על קשר ולשמוע על האירועים שלי?</p>
+          <p class="talk-to-me">רוצה לשמור על קשר<br>ולשמוע על האירועים שלי?</p>
         </div>
         <div class="contact-cards">
           <a class="contact-card reveal" href="https://www.instagram.com/anabellos5" target="_blank" rel="noopener">
@@ -309,7 +319,7 @@
     </div>
   </dialog>
 
-  <script src="../../assets/js/spiral.js?v=20261025e"></script>
-  <script src="../../assets/js/event.js?v=20261025e"></script>
+  <script src="../../assets/js/spiral.js?v=20261026a"></script>
+  <script src="../../assets/js/event.js?v=20261026a"></script>
 </body>
 </html>

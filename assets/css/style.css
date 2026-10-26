@@ -299,7 +299,7 @@ body::after {
   background: var(--paper); box-shadow: 0 0 0 2px var(--moss);
 }
 .timeline li.is-highlight::before { background: var(--cta); box-shadow: 0 0 0 2px var(--cta), 0 0 16px 4px rgba(198, 124, 71, .4); }
-.timeline time { font-family: var(--font-display); font-size: 1.4rem; color: var(--clay); direction: ltr; text-align: end; line-height: 1.5; }
+.timeline time { font-family: var(--font-body); font-weight: 600; font-size: 1.3rem; color: var(--clay); direction: ltr; text-align: end; line-height: 1.5; }
 .timeline h3 { font-size: 1.45rem; margin: 0 0 .1em; }
 .timeline p { margin: 0; color: var(--ink-soft); }
 
@@ -368,13 +368,13 @@ body::after {
   border: 1px solid var(--stone); pointer-events: none;
 }
 .ticket__label { font-weight: 700; letter-spacing: .14em; color: var(--moss); margin: 0; }
-.ticket__price { font-family: var(--font-display); font-weight: 500; font-size: clamp(3.8rem, 10vw, 5.2rem); line-height: 1; margin: .15em 0 .1em; color: var(--earth); }
+.ticket__price { font-family: var(--font-body); font-weight: 600; font-size: clamp(3.8rem, 10vw, 5.2rem); line-height: 1; margin: .15em 0 .1em; color: var(--earth); }
 .ticket__price small { font-size: .42em; font-weight: 400; }
 .ticket__old { display: block; font-size: 1.15rem; color: var(--taupe); text-decoration: line-through; }
 .ticket__note { color: var(--ink-soft); margin: .7em 0 0; font-size: .95rem; }
 .ticket__divider { border: 0; border-top: 1.5px dashed var(--stone); margin: 1.4em 0; }
 .ticket__facts { list-style: none; padding: 0; margin: 0 0 1.6em; display: grid; gap: .35em; font-weight: 600; }
-.seats { display: inline-block; margin-top: .9em; font-family: var(--font-hand); font-size: 1.8rem; color: var(--clay); line-height: 1.1; }
+.seats { display: inline-block; margin-top: .9em; font-family: var(--font-body); font-weight: 700; font-size: 1.2rem; color: var(--clay); line-height: 1.1; }
 
 /* ---------- contact ---------- */
 .contact-cards { display: grid; gap: 16px; margin-top: 2.4em; }
@@ -480,7 +480,7 @@ body::after {
   border-radius: var(--radius-sm); background: var(--mist);
   font-weight: 700;
 }
-.pay-summary strong { font-family: var(--font-display); font-size: 1.7rem; color: var(--earth); font-weight: 500; }
+.pay-summary strong { font-family: var(--font-body); font-size: 1.7rem; color: var(--earth); font-weight: 500; }
 .pay-options { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
 .pay-btn {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
@@ -499,7 +499,7 @@ body::after {
 
 .done { text-align: center; }
 .done__emoji { font-size: 3rem; line-height: 1; margin-bottom: .2em; }
-.done h3 { font-size: 1.9rem; }
+.done h3 { font-size: 1.9rem; font-family: var(--font-body); font-weight: 700; }
 .done__links { display: grid; gap: 10px; margin-top: 1.2em; }
 
 /* ---------- reveal on scroll ---------- */
@@ -525,3 +525,23 @@ body::after {
 .heart { display: inline-block; width: .9em; height: .9em; vertical-align: -.08em; color: var(--moss); }
 .faq-lines { white-space: nowrap; }
 @media (max-width: 480px) { .faq-lines { font-size: min(1em, 3.85vw); white-space: normal; } }
+
+/* everything that isn't a named display heading uses the body face */
+.reg__step h3 { font-family: var(--font-body); font-weight: 700; }
+
+/* venue video between "for who" and "what awaits" */
+.venue__frame {
+  width: min(100%, 400px); margin-inline: auto; aspect-ratio: 540 / 870;
+  border-radius: var(--radius); overflow: hidden; background: var(--night);
+  box-shadow: var(--shadow);
+}
+@media (min-width: 900px) { .venue__frame { width: 440px; } }
+.venue__frame video { width: 100%; height: 100%; object-fit: cover; }
+
+/* altar photo at the top of the evening's agenda */
+.altar {
+  width: min(72vw, 300px); aspect-ratio: 1; margin: 0 auto 2.4em;
+  border-radius: 50%; overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(168, 181, 145, .3), 0 0 60px 6px rgba(140, 90, 170, .28);
+}
+.altar img { width: 100%; height: 100%; object-fit: cover; }
