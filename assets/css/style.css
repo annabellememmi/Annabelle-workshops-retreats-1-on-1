@@ -472,7 +472,7 @@ body::after {
 .field.has-error input, .field.has-error textarea { border-color: #B4442E; }
 .field__error { display: none; color: #B4442E; font-size: .9rem; margin-top: 4px; font-weight: 600; }
 .field.has-error .field__error { display: block; }
-.field input[type="tel"] { direction: ltr; text-align: right; }
+.field input[type="tel"], .field input[type="email"] { direction: ltr; text-align: right; }
 
 .pay-summary {
   display: flex; justify-content: space-between; align-items: center;

@@ -100,6 +100,7 @@
   const rules = {
     name: (v) => v.trim().length >= 2 || "נשמח לשם מלא 🙂",
     phone: (v) => /^05\d{8}$/.test(normalizePhone(v)) || "מספר נייד לא תקין (לדוגמה 050-1234567)",
+    email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || "כתובת אימייל לא תקינה",
     from: (v) => v.trim().length >= 2 || "מאיפה את מגיעה?",
     expectation: (v) => v.trim().length >= 2 || "ספרי לי במילה או שתיים 💛"
   };

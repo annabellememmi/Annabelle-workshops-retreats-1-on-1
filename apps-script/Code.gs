@@ -8,9 +8,9 @@
 const SHEET_NAME = 'הרשמות';
 const HEADERS = [
   'תאריך הרשמה', 'מזהה', 'אירוע', 'שם', 'טלפון', 'מאיפה', 'ציפייה מהערב',
-  'מחיר', 'אמצעי תשלום', 'סטטוס', 'שולם ✔ (לסמן ידנית)', 'אישור נשלח', 'שליחת אישור בוואטסאפ'
+  'מחיר', 'אמצעי תשלום', 'סטטוס', 'שולם ✔ (לסמן ידנית)', 'אישור נשלח', 'שליחת אישור בוואטסאפ', 'אימייל'
 ];
-const COL = { id: 2, method: 9, status: 10, paid: 11, confirm: 13 };
+const COL = { id: 2, method: 9, status: 10, paid: 11, confirm: 13, email: 14 };
 
 // Where sign-up alerts go
 const NOTIFY_EMAIL = 'memmiconsulting@gmail.com';
@@ -46,15 +46,17 @@ function doPost(e) {
       const values = [new Date(), p.id, p.event, p.name, "'" + p.phone, p.from, p.expectation, Number(p.price)];
       if (row) {
         sh.getRange(row, 1, 1, values.length).setValues([values]);
+        sh.getRange(row, COL.email).setValue(p.email || '');
       } else {
         sh.appendRow(values.concat(['', 'נרשמה, טרם שילמה']));
         const r = sh.getLastRow();
         sh.getRange(r, COL.paid, 1, 2).insertCheckboxes();
         sh.getRange(r, COL.confirm).setFormula(confirmFormula_(p.name, p.phone));
+        sh.getRange(r, COL.email).setValue(p.email || '');
         alert = {
           subject: '🌿 נרשמה חדשה: ' + p.name,
           body: 'נרשמה חדשה לערב "מתחברת חזרה לעצמך באהבה"\n\n' +
-            'שם: ' + p.name + '\nטלפון: ' + p.phone + '\nמאיפה: ' + p.from +
+            'שם: ' + p.name + '\nטלפון: ' + p.phone + '\nאימייל: ' + (p.email || '') + '\nמאיפה: ' + p.from +
             '\nציפייה מהערב: ' + p.expectation + '\nמחיר: ' + p.price + ' ₪\n\n' +
             'סה"כ נרשמות עד עכשיו: ' + (r - 1) + '\n\n' +
             'הגיליון: ' + sh.getParent().getUrl()
