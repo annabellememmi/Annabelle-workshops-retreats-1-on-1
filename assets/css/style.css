@@ -538,3 +538,4 @@ body::after {
 }
 @media (min-width: 900px) { .venue__frame { width: 440px; } }
 .venue__frame video { width: 100%; height: 100%; object-fit: cover; }
+.done__note { font-size: .92rem; font-weight: 700; color: var(--clay); margin: -.2em 0 .4em; }
