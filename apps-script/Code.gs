@@ -102,8 +102,11 @@ function confirmFormula_(name, phone) {
   if (digits.startsWith('0')) digits = '972' + digits.slice(1);
   const first = String(name).trim().split(/\s+/)[0];
   const text =
-    'היי ' + first + ' 🤍 התשלום התקבל ואת רשומה לערב! ' +
-    'כל הפרטים, הצהרת הבריאות וקבוצת העדכונים כאן:\n' +
+    'היי ' + first + ' 🤍 התשלום התקבל ואת רשומה לערב!\n\n' +
+    '*שני דברים חשובים:*\n' +
+    '1. למלא הצהרת בריאות לפני האירוע\n' +
+    '2. להצטרף לקבוצת העדכונים, שם אשלח ביום האירוע את המיקום המדויק ופרטים חשובים\n\n' +
+    'הכול כאן:\n' +
     SITE + 'confirmed.html?n=' + encodeURIComponent(first);
   const url = 'https://wa.me/' + digits + '?text=' + encodeURIComponent(text);
   return '=HYPERLINK("' + url.replace(/"/g, '""') + '","📲 שליחת אישור")';
