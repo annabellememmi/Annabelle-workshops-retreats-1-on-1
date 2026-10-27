@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ההרשמה אושרה · מתחברת חזרה לעצמך באהבה</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#232C26">
+
+  <!-- link preview in WhatsApp: the confirmation card -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="he_IL">
+  <meta property="og:title" content="ההרשמה שלך אושרה 🌿 מתחברת חזרה לעצמך באהבה">
+  <meta property="og:description" content="יום חמישי 12.11 · 18:00-23:00 · תלמי אלעזר. כל הפרטים והצהרת הבריאות.">
+  <meta property="og:image" content="https://annabellememmi.github.io/Annabelle-workshops-retreats-1-on-1/assets/img/og-confirmed.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Assistant:wght@400;600;700;800&family=Frank+Ruhl+Libre:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/style.css?v=20261027a">
+  <style>
+    .confirm { min-height: 100svh; padding: 200px 0 80px; }
+    .confirm h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); }
+    .confirm .ticket { margin-top: 1.6em; }
+    .confirm .ticket__facts { text-align: start; gap: .7em; }
+    .confirm .ticket__facts li { display: flex; gap: .6em; }
+    .confirm .ticket__facts small { display: block; font-weight: 400; color: var(--ink-soft); }
+    .confirm .actions { display: grid; gap: 12px; }
+    .confirm .btn { font-size: 1.02rem; padding-inline: 1.2em; letter-spacing: .04em; }
+    .confirm .must { font-size: .92rem; color: var(--clay); font-weight: 700; margin: -.2em 0 .6em; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="./">
+      <span class="logo__mark"><img src="../../assets/img/logo-white.png" alt="הלוגו של אנאבל ממי" width="420" height="420"></span>
+      <span class="logo__tagline">סדנאות · ריטריטים · ליווי אישי</span>
+    </a>
+  </header>
+
+  <main class="hero confirm">
+    <div class="hero__content">
+      <p class="kicker">✓ ההרשמה שלך אושרה</p>
+      <h1>איזה כיף<span data-name></span>,<br>את <em>בפנים!</em></h1>
+      <p class="hero__tagline">מחכה לראות אותך בערב "מתחברת חזרה לעצמך באהבה"</p>
+
+      <div class="ticket">
+        <ul class="ticket__facts">
+          <li><span>📅</span><span>יום חמישי, 12 בנובמבר<small>18:00-23:00 (מי שרוצה מוזמנת להישאר עד חצות)</small></span></li>
+          <li><span>📍</span><span>תלמי אלעזר<small>המיקום המדויק יישלח בקבוצת העדכונים בסמוך לאירוע</small></span></li>
+          <li><span>🎒</span><span>מה להביא<small>משהו טעים לחלוק או משהו לשתות, וז׳קט/ שאל/ משהו נעים למקרה שיהיה קריר</small></span></li>
+        </ul>
+        <hr class="ticket__divider">
+        <div class="actions">
+          <a class="btn btn--lg btn--block" href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSd8lgVty1KuWljnaJg-dvXGUKiHKcRXobr_hWmcfZoYoVJK_Q/viewform?usp=send_form" target="_blank" rel="noopener">למילוי הצהרת בריאות</a>
+          <p class="must">חשוב למלא לפני האירוע</p>
+          <a class="btn btn--ghost btn--block" href="https://chat.whatsapp.com/Dou0kksJlg2AmYRe2pUojQ" target="_blank" rel="noopener">להצטרפות לקבוצת העדכונים</a>
+          <a class="btn btn--ghost btn--block" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%D7%9E%D7%AA%D7%97%D7%91%D7%A8%D7%AA%20%D7%97%D7%96%D7%A8%D7%94%20%D7%9C%D7%A2%D7%A6%D7%9E%D7%9A%20%D7%91%D7%90%D7%94%D7%91%D7%94&dates=20261112T160000Z/20261112T210000Z&location=%D7%AA%D7%9C%D7%9E%D7%99%20%D7%90%D7%9C%D7%A2%D7%96%D7%A8" target="_blank" rel="noopener">הוספה ליומן</a>
+        </div>
+        <p class="ticket__note">ביטול עד 5 בנובמבר מזכה בהחזר מלא. לכל שאלה: <a href="https://wa.me/972525826993" target="_blank" rel="noopener">052-5826993</a></p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    try {
+      const n = new URLSearchParams(location.search).get("n");
+      if (n) document.querySelector("[data-name]").textContent = ", " + n.slice(0, 30);
+    } catch (e) {}
+  </script>
+</body>
+</html>
