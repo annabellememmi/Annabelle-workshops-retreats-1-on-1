@@ -1,7 +1,7 @@
 /**
  * Saves registrations from the event landing pages into a Google Sheet,
  * emails Annabelle on every sign-up, and adds a one-tap WhatsApp
- * confirmation link for each registrant.
+ * confirmation link (to the personal confirmation page) for each registrant.
  * Works inside a sheet (Extensions > Apps Script) or as a standalone
  * project at script.google.com, where setup() creates the sheet itself.
  */
@@ -100,14 +100,24 @@ function confirmFormula_(name, phone) {
   if (digits.startsWith('0')) digits = '972' + digits.slice(1);
   const first = String(name).trim().split(/\s+/)[0];
   const text =
-    'היי ' + first + ' 🤍\n' +
-    'התשלום התקבל ואת רשומה לערב *מתחברת חזרה לעצמך באהבה* 🌿\n' +
-    'יום חמישי 12.11 · 18:00 · תלמי אלעזר\n\n' +
-    'כל הפרטים והצהרת הבריאות:\n' + SITE + 'confirmed.html?n=' + encodeURIComponent(first) + '\n\n' +
-    'בקבוצת העדכונים יישלחו המיקום המדויק ופרטים חשובים:\n' + GROUP_LINK + '\n\n' +
-    'מחכה לך! אנאבל';
+    'היי ' + first + ' 🤍 התשלום התקבל ואת רשומה לערב! ' +
+    'כל הפרטים, הצהרת הבריאות וקבוצת העדכונים כאן:\n' +
+    SITE + 'confirmed.html?n=' + encodeURIComponent(first);
   const url = 'https://wa.me/' + digits + '?text=' + encodeURIComponent(text);
   return '=HYPERLINK("' + url.replace(/"/g, '""') + '","📲 שליחת אישור")';
+}
+
+/**
+ * Run from the editor to rebuild the "שליחת אישור" link for every existing row
+ * (e.g. after changing the message text). Safe to run any time.
+ */
+function refreshConfirmLinks() {
+  const sh = getSheet_();
+  sh.getRange(1, COL.confirm).setValue(HEADERS[COL.confirm - 1]);
+  const last = sh.getLastRow();
+  if (last < 2) return;
+  const rows = sh.getRange(2, 4, last - 1, 2).getValues(); // name, phone
+  sh.getRange(2, COL.confirm, last - 1, 1).setFormulas(rows.map(([name, phone]) => [name ? confirmFormula_(name, phone) : '']));
 }
 
 function getSheet_() {
