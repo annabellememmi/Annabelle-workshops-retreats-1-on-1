@@ -75,12 +75,29 @@
     dlg.scrollTop = 0;
   }
 
-  function send(payload) {
-    if (!EV.sheetEndpoint) return Promise.resolve();
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  // Form encoding keeps this a "simple" request (no preflight); Apps Script answers "ok"
+  // and allows cross-origin reads, so we can confirm the row was saved and retry if not.
+  // Re-sending is safe: the script updates the same row by id.
+  async function send(payload, tries = 3) {
+    if (!EV.sheetEndpoint) return true;
     const body = new URLSearchParams({ event: EV.id, ...payload });
-    // no-cors + form encoding = no preflight; Apps Script receives e.parameter
-    return fetch(EV.sheetEndpoint, { method: "POST", mode: "no-cors", body }).catch(() => {});
+    for (let i = 0; i < tries; i++) {
+      try {
+        const res = await fetch(EV.sheetEndpoint, { method: "POST", body });
+        if ((await res.text()).trim() === "ok") return true;
+      } catch (e) { /* network hiccup: retry */ }
+      if (i < tries - 1) await wait(1200 * (i + 1));
+    }
+    return false;
   }
+
+  // a registration that couldn't be saved is kept on the device and re-sent on the next visit
+  const PENDING = "pending-registration";
+  try {
+    const pending = JSON.parse(localStorage.getItem(PENDING) || "null");
+    if (pending) send(pending).then((ok) => { if (ok) localStorage.removeItem(PENDING); });
+  } catch (e) {}
 
   $$("[data-open-register]").forEach((b) => b.addEventListener("click", (e) => {
     e.preventDefault();
@@ -127,8 +144,24 @@
     regId = regId || Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
     const btn = $("button[type=submit]", form);
     btn.disabled = true;
-    await send({ action: "register", id: regId, price: tier.price, ...data });
+    const label = btn.textContent;
+    btn.textContent = "שומרת את הפרטים…";
+    const payload = { action: "register", id: regId, price: tier.price, ...data };
+    const saved = await send(payload);
     btn.disabled = false;
+    btn.textContent = label;
+    try {
+      if (saved) localStorage.removeItem(PENDING);
+      else localStorage.setItem(PENDING, JSON.stringify(payload));
+    } catch (err) {}
+    const backup = $("[data-backup]", dlg);
+    if (backup) {
+      backup.hidden = saved;
+      const msg = "היי אנאבל, נרשמתי לערב ״מתחברת חזרה לעצמך באהבה״ 🌿\n" +
+        "שם: " + data.name + "\nטלפון: " + data.phone + "\nאימייל: " + data.email +
+        "\nמאיפה: " + data.from + "\nציפייה: " + data.expectation;
+      $("a", backup).href = "https://wa.me/" + EV.whatsappPhone + "?text=" + encodeURIComponent(msg);
+    }
     $$("[data-reg-name]", dlg).forEach((el) => (el.textContent = regName));
     showStep(1);
   });
