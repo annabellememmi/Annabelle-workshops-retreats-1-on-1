@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Assistant:wght@400;600;700;800&family=Frank+Ruhl+Libre:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/style.css?v=20261028c">
+  <link rel="stylesheet" href="../../assets/css/style.css?v=20261028d">
 
   <script>
     /* ===== Event settings: edit here ===== */
@@ -28,17 +28,16 @@
       id: "reconnect-2026-11-12",
       // Early-bird price applies until this moment (Israel time)
       earlyBird: {
-        price: 170,  // before VAT
+        price: 200,  // including VAT
         until: "2026-11-05T00:00:00+02:00",
         bit: "https://www.bitpay.co.il/app/share-info?i=1s2WygJS&j=true",
         paybox: "https://links.payboxapp.com/6dYD530vw7b"
       },
       regular: {
-        price: 200,  // before VAT
+        price: 230,  // including VAT
         bit: "https://www.bitpay.co.il/app/share-info?i=-XF8NX2g&j=true",
         paybox: "https://links.payboxapp.com/UsoLkZ5xw7b"
       },
-      vat: 0.18,
       // Google Apps Script web-app URL that saves registrations to a Google Sheet (see apps-script/README.md)
       sheetEndpoint: "https://script.google.com/macros/s/AKfycbyaLSPYyPAS6K3epxwnex7vxv6HFdFabfDW6fXOlYTtv9wOuFW1PM8F-OgExNPnTjtp/exec",
       whatsappPhone: "972525826993"
@@ -64,7 +63,7 @@
         <p class="hero__tagline">לנשים שרוצות להרגיש מועצמות, קלילות ומחוברות יותר</p>
         <p class="hero__meta"><span>יום חמישי · 12 בנובמבר</span><i>·</i><span><bdi>18:00-23:00</bdi> · תלמי אלעזר</span></p>
         <a class="btn btn--lg" href="#tickets" data-open-register>אני בפנים</a>
-        <p class="hero__price"><span data-price-label>מחיר מוקדמות</span> <span data-price>200.60</span> ₪ (<span data-price-net>170</span> ₪ + מע״מ) · מספר המקומות מוגבל</p>
+        <p class="hero__price"><span data-price-label>מחיר מוקדמות</span> <span data-price>200</span> ₪ כולל מע״מ · מספר המקומות מוגבל</p>
       </div>
     </section>
 
@@ -204,8 +203,8 @@
         <div class="ticket reveal">
           <p class="ticket__label" data-price-label>מחיר מוקדמות</p>
           <span class="ticket__old" data-price-old></span>
-          <p class="ticket__price"><span data-price>200.60</span> <small>₪</small></p>
-          <p class="ticket__vat">כולל מע״מ (<span data-price-net>170</span> ₪ + מע״מ)</p>
+          <p class="ticket__price"><span data-price>200</span> <small>₪</small></p>
+          <p class="ticket__vat">כולל מע״מ</p>
           <hr class="ticket__divider">
           <ul class="ticket__facts">
             <li>📅 יום חמישי · 12 בנובמבר · <bdi>18:00-23:00</bdi></li>
@@ -311,7 +310,7 @@
           <p>משהו בשמירת הפרטים לא הצליח. כדי שאשמור לך מקום, שלחי לי אותם בלחיצה:</p>
           <a class="btn btn--block" href="#" target="_blank" rel="noopener">שליחת הפרטים בוואטסאפ</a>
         </div>
-        <div class="pay-summary"><span><span data-price-label>מחיר מוקדמות</span></span><strong><span data-price>200.60</span> ₪</strong></div>
+        <div class="pay-summary"><span><span data-price-label>מחיר מוקדמות</span></span><strong><span data-price>200</span> ₪</strong></div>
         <p>בחרי איך נוח לך לשלם:</p>
         <div class="pay-options">
           <a class="pay-btn" data-pay="bit" href="#" target="_blank" rel="noopener">ביט<small>Bit</small></a>
@@ -339,7 +338,7 @@
     </div>
   </dialog>
 
-  <script src="../../assets/js/spiral.js?v=20261028c"></script>
-  <script src="../../assets/js/event.js?v=20261028c"></script>
+  <script src="../../assets/js/spiral.js?v=20261028d"></script>
+  <script src="../../assets/js/event.js?v=20261028d"></script>
 </body>
 </html>
