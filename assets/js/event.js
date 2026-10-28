@@ -122,14 +122,17 @@
     expectation: (v) => v.trim().length >= 2 || "ספרי לי במילה או שתיים 💛"
   };
   function validate(input) {
-    const res = rules[input.name] ? rules[input.name](input.value) : true;
+    const res = input.type === "checkbox"
+      ? input.checked || "יש לאשר את התקנון ומדיניות הפרטיות"
+      : rules[input.name] ? rules[input.name](input.value) : true;
     const field = input.closest(".field");
     field.classList.toggle("has-error", res !== true);
     $(".field__error", field).textContent = res === true ? "" : res;
     return res === true;
   }
   $$("input, textarea", form).forEach((i) => {
-    i.addEventListener("blur", () => i.value && validate(i));
+    i.addEventListener("blur", () => i.type !== "checkbox" && i.value && validate(i));
+    i.addEventListener("change", () => i.type === "checkbox" && validate(i));
     i.addEventListener("input", () => i.closest(".field").classList.contains("has-error") && validate(i));
   });
 
@@ -139,6 +142,7 @@
     const ok = inputs.map(validate).every(Boolean);
     if (!ok) { inputs.find((i) => i.closest(".has-error")).focus(); return; }
     const data = Object.fromEntries(new FormData(form));
+    delete data.terms;
     data.phone = normalizePhone(data.phone);
     regName = data.name.trim().split(" ")[0];
     regId = regId || Date.now().toString(36) + Math.random().toString(36).slice(2, 6);

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>אנאבל ממי · אירועים וסדנאות</title>
+  <title>אנאבל ממי · ממי יזמות · אירועים וסדנאות</title>
   <meta name="description" content="סדנאות, ריטריטים וערבי נשים עם אנאבל ממי.">
   <meta name="theme-color" content="#2E4038">
   <meta property="og:title" content="אנאבל ממי · אירועים וסדנאות">
@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Assistant:wght@400;600;700;800&family=Frank+Ruhl+Libre:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261028a">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261028b">
   <style>
     .events { display: grid; gap: 22px; margin-top: 2.4em; }
     @media (min-width: 760px) { .events { grid-template-columns: repeat(2, 1fr); } }
@@ -22,8 +22,10 @@
     .event-card div { padding: 20px 22px 24px; }
     .event-card h2 { font-size: 1.6rem; margin-bottom: .2em; }
     .event-card p { margin: 0; color: var(--ink-soft); }
-    .event-card .eyebrow { letter-spacing: .08em; }
-    .event-card .eyebrow::before { display: none; }
+    .event-card .eyebrow { display: block; letter-spacing: .06em; line-height: 1.6; }
+    .event-card .eyebrow::before, .event-card .eyebrow::after { display: none; }
+    .event-card__price { font-weight: 700; color: var(--earth) !important; margin: .8em 0 1em !important; }
+    .event-card .btn { pointer-events: none; }
   </style>
 </head>
 <body>
@@ -36,24 +38,44 @@
       <p class="hero__tagline">צמיחה, תנועה וחיבור לעצמך, בעומק, בקלילות ועם הרבה הומור</p>
     </div>
   </section>
-  <main class="section section--paper">
-    <div class="wrap center">
-      <p class="eyebrow">האירועים הקרובים</p>
-      <!-- To add an event: copy a card below and point it at the new folder in events/ -->
-      <div class="events">
-        <a class="event-card" href="events/reconnect-nov-2026/">
-          <img src="assets/img/og-reconnect.jpg" alt="" loading="lazy">
-          <div>
-            <p class="eyebrow">יום חמישי · 12 בנובמבר · תלמי אלעזר</p>
-            <h2>מתחברת חזרה לעצמך באהבה</h2>
-            <p>ערב סדנאות העצמה וריקודים לנשים</p>
-          </div>
-        </a>
+  <main>
+    <section class="section section--cream">
+      <div class="wrap wrap--narrow center">
+        <p class="eyebrow">על העסק</p>
+        <p class="lead">ממי יזמות מפיקה סדנאות, ערבי נשים, ריטריטים ותהליכי ליווי אישי בהנחיית אנאבל ממי,
+          מלווה תהליכי צמיחה דרך אימון מנטלי ורגשי ומובילת סדנאות התפתחות ותנועה בארץ ובעולם.</p>
+        <p>כל אירוע משלב עומק וקלילות: עבודה רגשית, תנועה, מוזיקה ומרחב בטוח לחיבור לעצמך.
+          ההרשמה והתשלום מתבצעים בדף של כל אירוע, והקבלה נשלחת אלייך לאחר התשלום.</p>
       </div>
-    </div>
+    </section>
+
+    <section class="section section--paper">
+      <div class="wrap center">
+        <p class="eyebrow">האירועים הקרובים</p>
+        <!-- To add an event: copy a card below and point it at the new folder in events/ -->
+        <div class="events">
+          <a class="event-card" href="events/reconnect-nov-2026/">
+            <img src="assets/img/og-reconnect.jpg" alt="מעגל נשים בסדנה" loading="lazy">
+            <div>
+              <p class="eyebrow">יום חמישי · 12 בנובמבר · <bdi style="white-space:nowrap">18:00-23:00</bdi> · תלמי אלעזר</p>
+              <h2>מתחברת חזרה לעצמך באהבה</h2>
+              <p>ערב סדנאות העצמה וריקודים לנשים: סדנת העצמה, עבודת אגן וטוורק ומסיבת ריקודים.</p>
+              <p class="event-card__price">מחיר מוקדמות: 170 ₪ (כולל מע״מ)</p>
+              <span class="btn">לפרטים והרשמה</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
+
   <footer class="footer" style="padding-bottom: 48px;">
-    <p>📞 <a href="https://wa.me/972525826993">052-5826993</a> · <a href="https://www.instagram.com/anabellos5">אינסטגרם</a></p>
+    <p><a href="https://www.instagram.com/anabellos5">אינסטגרם</a> · <a href="https://chat.whatsapp.com/Dou0kksJlg2AmYRe2pUojQ">קבוצת העדכונים בוואטסאפ</a></p>
+    <div class="footer__biz">
+      <p><strong>ממי יזמות / Memmi Ventures</strong> · עוסק מורשה 314457813 · אביחיל</p>
+      <p><a href="mailto:memmiconsulting@gmail.com">memmiconsulting@gmail.com</a> · <a href="https://wa.me/972525826993">052-5826993</a></p>
+      <p><a href="terms.html">תקנון</a> · <a href="privacy.html">מדיניות פרטיות</a></p>
+    </div>
   </footer>
 </body>
 </html>
