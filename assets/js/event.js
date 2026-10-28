@@ -11,15 +11,16 @@
   const now = override ? new Date(override + "T12:00:00+02:00") : new Date();
 
   /* ---------- pricing tier ---------- */
-  const isEarly = now < new Date(EV.earlyBird.until);
-  const tier = isEarly ? EV.earlyBird : EV.regular;
-  const tierName = isEarly ? "מחיר מוקדמות" : "מחיר כרטיס";
+  // one ticket price, optionally rising on a set date (EV.later)
+  const raised = !!EV.later && now >= new Date(EV.later.from);
+  const tier = raised ? EV.later : EV.ticket;
+  const tierName = EV.later && !raised ? "מחיר מוקדמות" : "מחיר כרטיס";
   // prices are final, including VAT
   $$("[data-price]").forEach((el) => (el.textContent = tier.price));
   $$("[data-price-label]").forEach((el) => (el.textContent = tierName));
   $$("[data-price-old]").forEach((el) => {
-    if (isEarly) el.remove();
-    else el.textContent = `מחיר מוקדמות ${EV.earlyBird.price} ₪`;
+    if (!raised) el.remove();
+    else el.textContent = `מחיר מוקדמות ${EV.ticket.price} ₪`;
   });
 
   /* ---------- reveal on scroll ---------- */

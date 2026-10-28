@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Assistant:wght@400;600;700;800&family=Frank+Ruhl+Libre:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261028d">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261029a">
   <style>
     .events { display: grid; gap: 22px; margin-top: 2.4em; }
     @media (min-width: 760px) { .events { grid-template-columns: repeat(2, 1fr); } }
@@ -60,7 +60,6 @@
               <p class="eyebrow">יום חמישי · 12 בנובמבר · <bdi style="white-space:nowrap">18:00-23:00</bdi> · תלמי אלעזר</p>
               <h2>מתחברת חזרה לעצמך באהבה</h2>
               <p>ערב סדנאות העצמה וריקודים לנשים: סדנת העצמה, עבודת אגן וטוורק ומסיבת ריקודים.</p>
-              <p class="event-card__price" data-home-price>מחיר מוקדמות: 200 ₪ כולל מע״מ</p>
               <span class="btn">לפרטים והרשמה</span>
             </div>
           </a>
@@ -77,11 +76,5 @@
       <p><a href="terms.html">תקנון</a> · <a href="privacy.html">מדיניות פרטיות</a></p>
     </div>
   </footer>
-  <script>
-    // early-bird price ends on 5.11 (same rule as the event page)
-    if (new Date() >= new Date("2026-11-05T00:00:00+02:00")) {
-      document.querySelector("[data-home-price]").textContent = "מחיר: 230 ₪ כולל מע״מ";
-    }
-  </script>
 </body>
 </html>
