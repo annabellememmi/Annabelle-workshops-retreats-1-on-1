@@ -559,3 +559,4 @@ body::after {
 .legal h2 { font-family: var(--font-body); font-weight: 800; font-size: 1.15rem; margin: 2em 0 .5em; color: var(--forest); }
 .legal p, .legal li { color: var(--ink); }
 .legal ul { padding-inline-start: 1.2em; }
+.ticket__vat { margin: 0; font-size: .92rem; color: var(--ink-soft); font-weight: 600; }

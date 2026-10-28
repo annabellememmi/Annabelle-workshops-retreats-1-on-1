@@ -14,12 +14,17 @@
   const isEarly = now < new Date(EV.earlyBird.until);
   const tier = isEarly ? EV.earlyBird : EV.regular;
   const tierName = isEarly ? "מחיר מוקדמות" : "מחיר כרטיס";
+  // prices are set before VAT; customers always see the final price including VAT
+  const withVat = (net) => Math.round(net * (1 + EV.vat) * 100) / 100;
+  const fmt = (n) => (Number.isInteger(n) ? String(n) : n.toFixed(2));
+  tier.total = withVat(tier.price);
 
-  $$("[data-price]").forEach((el) => (el.textContent = tier.price));
+  $$("[data-price]").forEach((el) => (el.textContent = fmt(tier.total)));
+  $$("[data-price-net]").forEach((el) => (el.textContent = fmt(tier.price)));
   $$("[data-price-label]").forEach((el) => (el.textContent = tierName));
   $$("[data-price-old]").forEach((el) => {
     if (isEarly) el.remove();
-    else el.textContent = `מחיר מוקדמות ${EV.earlyBird.price} ₪`;
+    else el.textContent = `מחיר מוקדמות ${fmt(withVat(EV.earlyBird.price))} ₪`;
   });
 
   /* ---------- reveal on scroll ---------- */
@@ -150,7 +155,7 @@
     btn.disabled = true;
     const label = btn.textContent;
     btn.textContent = "שומרת את הפרטים…";
-    const payload = { action: "register", id: regId, price: tier.price, ...data };
+    const payload = { action: "register", id: regId, price: tier.total, ...data };
     const saved = await send(payload);
     btn.disabled = false;
     btn.textContent = label;
