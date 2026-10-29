@@ -14,6 +14,8 @@ const COL = { id: 2, method: 9, status: 10, paid: 11, confirm: 13, email: 14 };
 
 // Where sign-up alerts go
 const NOTIFY_EMAIL = 'memmiconsulting@gmail.com';
+// Special e-mail when the number of registrations reaches each of these
+const MILESTONES = [20, 25, 30];
 // Optional WhatsApp alerts to yourself via CallMeBot (leave empty to skip)
 const CALLMEBOT_PHONE = '';   // e.g. '972525826993'
 const CALLMEBOT_APIKEY = '';  // the key CallMeBot sends you
@@ -81,7 +83,27 @@ function doPost(e) {
     lock.releaseLock();
   }
   if (alert) notify_(alert.subject, alert.body);
+  checkMilestones_();
   return ContentService.createTextOutput('ok');
+}
+
+/** Sends one celebratory e-mail per milestone (20, 25, 30 registrations). Each is sent only once. */
+function checkMilestones_() {
+  try {
+    const sh = getSheet_();
+    const last = sh.getLastRow();
+    if (last < 2) return;
+    const count = sh.getRange(2, 4, last - 1, 1).getValues().filter((r) => String(r[0]).trim()).length;
+    const props = PropertiesService.getScriptProperties();
+    const sent = JSON.parse(props.getProperty('MILESTONES_SENT') || '[]');
+    MILESTONES.filter((m) => count >= m && sent.indexOf(m) === -1).forEach((m) => {
+      MailApp.sendEmail(NOTIFY_EMAIL, '🎉 יש ' + m + ' נרשמות לערב!',
+        'מזל טוב! הגעת ל־' + m + ' נרשמות לערב "מתחברת חזרה לעצמך באהבה" 🌿\n\n' +
+        'סה"כ שורות בגיליון כרגע: ' + count + '\n\nהגיליון: ' + sh.getParent().getUrl());
+      sent.push(m);
+    });
+    props.setProperty('MILESTONES_SENT', JSON.stringify(sent));
+  } catch (err) { console.error(err); }
 }
 
 /** E-mail (and optionally WhatsApp) alert to Annabelle. Never blocks a registration. */

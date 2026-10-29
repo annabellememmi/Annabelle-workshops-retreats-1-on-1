@@ -59,8 +59,39 @@
       label();
       document.dispatchEvent(new CustomEvent("vibe-video-sound", { detail: turnOn }));
     });
-    return { video, label };
+    return { video, label, btn };
   });
+
+  /* ---------- the talking video: plays with sound when the "about" section comes into view ----------
+     Browsers only allow sound after the visitor has tapped the page at least once, so before that
+     the video stays muted and its sound button gently pulses; after it, sound comes on by itself. */
+  const talk = soundVideos.find((o) => o.video.closest(".video-card--talk"));
+  if (talk && "IntersectionObserver" in window) {
+    let inView = false, userMuted = false, heard = false;
+    const activated = () => !navigator.userActivation || navigator.userActivation.hasBeenActive;
+    const soundOn = () => {
+      if (!inView || userMuted || !talk.video.muted || !activated()) return;
+      soundVideos.forEach((o) => { if (o !== talk) { o.video.muted = true; o.label(); } });
+      talk.video.muted = false;
+      if (!heard) { talk.video.currentTime = 0; heard = true; } // first time: from her first word
+      talk.video.play().catch(() => { talk.video.muted = true; talk.video.play(); talk.label(); });
+      talk.label();
+      talk.btn.classList.remove("is-hint");
+      document.dispatchEvent(new CustomEvent("vibe-video-sound", { detail: true }));
+    };
+    talk.btn.addEventListener("click", () => { userMuted = talk.video.muted; });
+    new IntersectionObserver(([e]) => {
+      inView = e.isIntersecting;
+      if (inView) {
+        if (activated()) soundOn();
+        else talk.btn.classList.add("is-hint");
+      } else if (!talk.video.muted) {
+        talk.video.muted = true; talk.label(); // stop talking once she scrolls on
+      }
+    }, { threshold: 0.6 }).observe(talk.video.parentElement);
+    // first tap anywhere while the video is on screen turns the sound on
+    document.addEventListener("pointerdown", () => setTimeout(soundOn, 0), { passive: true });
+  }
 
   /* ---------- registration dialog ---------- */
   const dlg = $("#register");

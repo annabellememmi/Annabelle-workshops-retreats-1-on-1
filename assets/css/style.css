@@ -559,3 +559,7 @@ body::after {
 .tickets__row .ticket { margin-top: 0; width: 100%; }
 .video-card--tickets { width: min(64vw, 240px); box-shadow: 0 0 0 6px rgba(250, 248, 243, .9), var(--shadow); }
 @media (min-width: 900px) { .tickets__row { grid-template-columns: auto minmax(0, 540px); justify-content: center; gap: 56px; } .video-card--tickets { width: 300px; } }
+
+/* sound button pulses when the talking video is waiting for a first tap */
+.video-card__unmute.is-hint { background: var(--cta); color: var(--cta-ink); font-size: .9rem; padding: .55em 1em; animation: hint 1.6s ease-in-out infinite; }
+@keyframes hint { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
