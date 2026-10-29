@@ -572,3 +572,15 @@ body::after {
 .invite .btn { margin-top: .6em; }
 @media (min-width: 760px) { .invite__q, .invite__big { max-width: none; } }
 .invite__big { text-wrap: balance; }
+
+/* instagram + whatsapp group icons, top corner of the header */
+.topbar__social { position: absolute; top: 22px; inset-inline-end: var(--gutter); display: flex; gap: 10px; }
+.topbar__social a {
+  width: 40px; height: 40px; display: grid; place-items: center;
+  border-radius: 50%; color: var(--cream);
+  border: 1px solid rgba(250, 248, 243, .45); background: rgba(35, 44, 38, .35);
+  backdrop-filter: blur(6px); transition: background-color .2s, border-color .2s;
+}
+.topbar__social a:hover { background: var(--moss); border-color: var(--moss); }
+.topbar__social svg { width: 20px; height: 20px; }
+@media (max-width: 420px) { .topbar__social { flex-direction: column; top: 18px; gap: 8px; } .topbar__social a { width: 36px; height: 36px; } }
