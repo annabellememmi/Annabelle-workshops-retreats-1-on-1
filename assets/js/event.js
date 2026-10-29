@@ -164,7 +164,7 @@
       backup.hidden = saved;
       const msg = "היי אנאבל, נרשמתי לערב ״מתחברת חזרה לעצמך באהבה״ 🌿\n" +
         "שם: " + data.name + "\nטלפון: " + data.phone + "\nאימייל: " + data.email +
-        "\nמאיפה: " + data.from + "\nציפייה: " + data.expectation;
+        "\nמאיפה: " + data.from + "\nמה הייתי רוצה להעז: " + data.expectation;
       $("a", backup).href = "https://wa.me/" + EV.whatsappPhone + "?text=" + encodeURIComponent(msg);
     }
     $$("[data-reg-name]", dlg).forEach((el) => (el.textContent = regName));
