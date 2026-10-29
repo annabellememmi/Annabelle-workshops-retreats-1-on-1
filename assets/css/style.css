@@ -561,3 +561,14 @@ body::after {
 .legal ul { padding-inline-start: 1.2em; }
 .ticket__vat { margin: 0; font-size: .92rem; color: var(--ink-soft); font-weight: 600; }
 .ticket__note a { color: var(--clay); font-weight: 700; }
+
+/* opening invitation (replaces "for who"): questions, then the answer */
+.invite { max-width: 720px; }
+.invite p { margin-inline: auto; }
+.invite__big { font-weight: 700; font-size: clamp(1.3rem, 1.2vw + 1rem, 1.65rem); line-height: 1.5; color: var(--ink); max-width: 30ch; margin-bottom: .8em; }
+.invite__q { font-weight: 600; font-size: 1.12em; line-height: 1.6; color: var(--ink-soft); max-width: 34ch; margin-bottom: .5em; }
+.invite__for { margin-top: 1.6em; padding-top: 1.2em; position: relative; color: var(--forest); }
+.invite__for::before { content: ""; position: absolute; top: 0; left: 50%; width: 60px; height: 1.5px; margin-left: -30px; background: var(--taupe); }
+.invite .btn { margin-top: .6em; }
+@media (min-width: 760px) { .invite__q, .invite__big { max-width: none; } }
+.invite__big { text-wrap: balance; }
