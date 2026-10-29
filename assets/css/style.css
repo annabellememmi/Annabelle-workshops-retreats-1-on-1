@@ -584,3 +584,10 @@ body::after {
 .topbar__social a:hover { background: var(--moss); border-color: var(--moss); }
 .topbar__social svg { width: 20px; height: 20px; }
 @media (max-width: 420px) { .topbar__social { flex-direction: column; top: 18px; gap: 8px; } .topbar__social a { width: 36px; height: 36px; } }
+
+/* about: talking video first, text, then the playful clip to close */
+@media (min-width: 900px) {
+  #about .vibe { grid-template-columns: 1fr 1fr; }
+  .video-card--end { grid-column: 1 / -1; width: min(100%, 340px); }
+}
+.video-card--talk { aspect-ratio: 540 / 876; }
