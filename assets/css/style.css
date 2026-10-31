@@ -179,8 +179,8 @@ body::after {
 .hero::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(180deg, rgba(35, 44, 38, .82) 0%, rgba(35, 44, 38, .45) 40%, rgba(35, 44, 38, .7) 80%, rgba(35, 44, 38, .9) 100%),
-    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(65, 91, 68, .35), transparent 70%);
+    linear-gradient(180deg, rgba(35, 44, 38, .66) 0%, rgba(35, 44, 38, .26) 38%, rgba(35, 44, 38, .48) 78%, rgba(35, 44, 38, .8) 100%),
+    radial-gradient(ellipse 70% 45% at 50% 50%, rgba(35, 44, 38, .3), transparent 75%);
 }
 @keyframes breathe { to { transform: scale(1.14); } }
 .hero__content { position: relative; max-width: 860px; padding-inline: var(--gutter); }
