@@ -563,3 +563,10 @@ body::after {
 /* sound button pulses when the talking video is waiting for a first tap */
 .video-card__unmute.is-hint { background: var(--cta); color: var(--cta-ink); font-size: .9rem; padding: .55em 1em; animation: hint 1.6s ease-in-out infinite; }
 @keyframes hint { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+
+/* "taste of past events": swipeable row on phones, centred grid on larger screens */
+.taste__grid { display: flex; gap: 16px; margin-top: 2em; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; justify-content: safe center; }
+.taste__item { flex: 0 0 min(78vw, 340px); margin: 0; aspect-ratio: 540 / 870; border-radius: var(--radius); overflow: hidden; background: var(--night); box-shadow: var(--shadow); scroll-snap-align: center; }
+.taste__item video, .taste__item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.taste__item--wide { aspect-ratio: 4 / 3; flex-basis: min(86vw, 460px); }
+@media (min-width: 900px) { .taste__grid { flex-wrap: wrap; overflow: visible; gap: 22px; } .taste__item { flex-basis: 300px; } .taste__item--wide { flex-basis: 420px; } }

@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Assistant:wght@400;600;700;800&family=Frank+Ruhl+Libre:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/style.css?v=20261029h">
+  <link rel="stylesheet" href="../../assets/css/style.css?v=20261031a">
 
   <script>
     /* ===== Event settings: edit here ===== */
@@ -85,11 +85,17 @@
       </div>
     </section>
 
-    <!-- ================= VENUE VIDEO ================= -->
-    <section class="section section--sand venue">
+    <!-- ================= TASTE OF PAST EVENTS ================= -->
+    <!-- To add media: copy a <figure class="taste__item"> (video or img) into .taste__grid -->
+    <section class="section section--sand taste" id="taste">
       <div class="wrap center">
-        <div class="venue__frame reveal">
-          <video src="../../assets/video/venue-circle-v3.mp4" poster="../../assets/img/venue-circle-poster-v3.jpg" autoplay muted loop playsinline preload="metadata" aria-label="סרטון קצר ממעגל נשים"></video>
+        <div class="reveal">
+          <h2 class="section-title section-title--rule">טעימה מאירועים קודמים</h2>
+        </div>
+        <div class="taste__grid">
+          <figure class="taste__item reveal">
+            <video src="../../assets/video/venue-circle-v3.mp4" poster="../../assets/img/venue-circle-poster-v3.jpg" autoplay muted loop playsinline preload="metadata" aria-label="סרטון קצר ממעגל נשים"></video>
+          </figure>
         </div>
       </div>
     </section>
@@ -150,10 +156,9 @@
           <details>
             <summary>מה להביא?</summary>
             <div class="faq__body">
-              <p class="faq-lines">יהיה שולחן שפע משותף עם קקאו, פירות ומים,<br>
-              כל אחת מוזמנת להביא משהו טעים לחלוק או משהו לשתות</p>
               <p class="faq-lines">בגדים נוחים לריקודים</p>
               <p class="faq-lines">ז׳קט/ שאל/ משהו נעים למקרה שיהיה קריר</p>
+              <p class="faq-lines">ואת כל השאר עליי: יחכה לנו שולחן שפע עם כל טוב</p>
             </div>
           </details>
           <details>
@@ -323,6 +328,6 @@
   </dialog>
 
   <script src="../../assets/js/spiral.js?v=20261029c"></script>
-  <script src="../../assets/js/event.js?v=20261029h"></script>
+  <script src="../../assets/js/event.js?v=20261031a"></script>
 </body>
 </html>
