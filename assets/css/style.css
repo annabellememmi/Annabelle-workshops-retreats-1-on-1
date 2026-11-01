@@ -571,3 +571,5 @@ body::after {
 .taste__item--wide { aspect-ratio: 4 / 3; flex-basis: min(86vw, 460px); }
 @media (min-width: 900px) { .taste__grid { flex-wrap: wrap; overflow: visible; gap: 22px; } .taste__item { flex-basis: 300px; } .taste__item--wide { flex-basis: 420px; } }
 @media (max-width: 480px) { .hero .kicker { letter-spacing: .08em; font-size: min(1rem, 4.1vw); } }
+.taste__item.taste__item--wide { aspect-ratio: 1200 / 884; align-self: center; }
+@media (min-width: 900px) { .taste__item.taste__item--wide { flex-basis: 520px; } .taste__grid { align-items: center; } }
