@@ -596,3 +596,4 @@ h1, h2, h3, .section-title, .about__name, .talk-to-me, .story__quote, .reg__head
 .legal h1 { font-size: clamp(2.8rem, 6vw, 4rem); }
 .legal h2 { font-family: var(--font-body); font-weight: 800; }
 .invite__big { font-family: var(--font-body); }
+.taste__grid .taste__item--landscape { grid-column: 1 / -1; aspect-ratio: 2 / 1; }
