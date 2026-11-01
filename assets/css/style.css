@@ -597,3 +597,6 @@ h1, h2, h3, .section-title, .about__name, .talk-to-me, .story__quote, .reg__head
 .legal h2 { font-family: var(--font-body); font-weight: 800; }
 .invite__big { font-family: var(--font-body); }
 .taste__grid .taste__item--landscape { grid-column: 1 / -1; aspect-ratio: 2 / 1; }
+.taste__item { position: relative; }
+.taste__star { position: absolute; top: 8px; inset-inline-start: 12px; color: #FAF8F3; font-weight: 800; font-size: 1.5rem; line-height: 1; text-shadow: 0 1px 6px rgba(0, 0, 0, .55); pointer-events: none; }
+.taste__note { max-width: 640px; margin: 1.2em auto 0; font-size: .9rem; color: var(--ink-soft); text-align: center; }
