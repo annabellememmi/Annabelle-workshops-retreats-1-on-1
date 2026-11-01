@@ -23,6 +23,24 @@
     else el.textContent = `מחיר מוקדמות ${EV.ticket.price} ₪`;
   });
 
+  /* ---------- videos start by themselves when they scroll into view ----------
+     Muted autoplay is allowed everywhere, but some phones (e.g. iPhone in Low Power Mode)
+     still hold it back, so we call play() ourselves when a video is on screen, retry on the
+     first touch, and pause videos that are off screen to save battery and data. */
+  const autoVideos = $$("video[autoplay]");
+  const tryPlay = (v) => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+  autoVideos.forEach((v) => { v.muted = true; v.setAttribute("muted", ""); v.playsInline = true; });
+  if ("IntersectionObserver" in window) {
+    const seen = new Set();
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { seen.add(e.target); tryPlay(e.target); }
+      else { seen.delete(e.target); e.target.pause(); }
+    }), { threshold: 0.25 });
+    autoVideos.forEach((v) => io.observe(v));
+    const kick = () => seen.forEach(tryPlay);
+    ["touchend", "pointerdown", "scroll"].forEach((ev) => window.addEventListener(ev, kick, { passive: true }));
+  }
+
   /* ---------- reveal on scroll ---------- */
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
