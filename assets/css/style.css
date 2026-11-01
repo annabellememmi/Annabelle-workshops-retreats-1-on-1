@@ -579,3 +579,4 @@ body::after {
 .taste__grid .taste__item { flex: none; width: auto; aspect-ratio: 540 / 870; }
 .taste__grid .taste__item--wide { grid-column: 1 / -1; aspect-ratio: 1200 / 884; }
 @media (min-width: 900px) { .taste__grid { gap: 22px; } }
+.timeline__after { max-width: 640px; margin: .4em auto 0; text-align: center; color: var(--stone); font-size: 1.02rem; line-height: 1.7; }
