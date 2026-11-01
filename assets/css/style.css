@@ -33,7 +33,7 @@
   --cta-ink: #2B1A12;
   --glow: #E8B48E;
 
-  --font-display: "Frank Ruhl Libre", "David Libre", serif;
+  --font-display: "Amatic SC", "Assistant", cursive;
   --font-body: "Assistant", "Heebo", system-ui, sans-serif;
   --font-hand: "Amatic SC", "Assistant", cursive;
 
@@ -580,3 +580,19 @@ body::after {
 .taste__grid .taste__item--wide { grid-column: 1 / -1; aspect-ratio: 1200 / 884; }
 @media (min-width: 900px) { .taste__grid { gap: 22px; } }
 .timeline__after { max-width: 640px; margin: .4em auto 0; text-align: center; color: var(--stone); font-size: 1.02rem; line-height: 1.7; }
+
+/* two fonts only: Amatic SC (hand-drawn headings) + Assistant (everything else).
+   Amatic is narrow and light, so headings get weight 700 and a bit more size. */
+h1, h2, h3, .section-title, .about__name, .talk-to-me, .story__quote, .reg__head h2, .done h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: .02em; }
+.hero h1 { font-size: clamp(3.8rem, 11vw, 8rem); font-weight: 700; line-height: 1; }
+.hero h1 em { font-weight: 700; }
+.section-title { font-size: clamp(2.7rem, 5.6vw, 4.2rem); line-height: 1.1; }
+.about__name { font-size: clamp(3.2rem, 6.4vw, 4.6rem); }
+.timeline h3 { font-size: 1.95rem; line-height: 1.15; }
+.talk-to-me { font-size: clamp(2rem, 4vw, 2.7rem); line-height: 1.35; }
+.reg__head h2 { font-size: 2.2rem; }
+.done h3 { font-size: 2.4rem; }
+.pay-step h3, .reg__step > h3 { font-size: 2rem; }
+.legal h1 { font-size: clamp(2.8rem, 6vw, 4rem); }
+.legal h2 { font-family: var(--font-body); font-weight: 800; }
+.invite__big { font-family: var(--font-body); }
