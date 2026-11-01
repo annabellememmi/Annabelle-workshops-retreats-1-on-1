@@ -573,3 +573,9 @@ body::after {
 @media (max-width: 480px) { .hero .kicker { letter-spacing: .08em; font-size: min(1rem, 4.1vw); } }
 .taste__item.taste__item--wide { aspect-ratio: 1200 / 884; align-self: center; }
 @media (min-width: 900px) { .taste__item.taste__item--wide { flex-basis: 520px; } .taste__grid { align-items: center; } }
+
+/* past events: everything visible at once, no sideways swiping. Photo on top, videos below */
+.taste__grid { display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; overflow: visible !important; max-width: 640px; margin-inline: auto; }
+.taste__grid .taste__item { flex: none; width: auto; aspect-ratio: 540 / 870; }
+.taste__grid .taste__item--wide { grid-column: 1 / -1; aspect-ratio: 1200 / 884; }
+@media (min-width: 900px) { .taste__grid { gap: 22px; } }
