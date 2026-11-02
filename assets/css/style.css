@@ -600,3 +600,13 @@ h1, h2, h3, .section-title, .about__name, .talk-to-me, .story__quote, .reg__head
 .taste__item { position: relative; }
 .taste__star { position: absolute; top: 8px; inset-inline-start: 12px; color: #FAF8F3; font-weight: 800; font-size: 1.5rem; line-height: 1; text-shadow: 0 1px 6px rgba(0, 0, 0, .55); pointer-events: none; }
 .taste__note { max-width: 640px; margin: 1.2em auto 0; font-size: .9rem; color: var(--ink-soft); text-align: center; }
+
+/* workshops: a short taste of each part of the evening */
+.workshops { display: grid; gap: 18px; margin-top: 2.2em; }
+@media (min-width: 900px) { .workshops { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+.workshop { background: var(--cream); border-radius: var(--radius); padding: 26px 26px 22px; box-shadow: inset 0 0 0 1px rgba(163, 154, 142, .35); }
+.workshop__tag { margin: 0 0 .2em; font-weight: 700; font-size: .82rem; letter-spacing: .18em; color: var(--moss); }
+.workshop h3 { font-size: 2.2rem; margin: 0 0 .3em; color: var(--ink); }
+.workshop p { margin: 0 0 .7em; color: var(--ink-soft); line-height: 1.7; }
+.workshop p:last-child { margin-bottom: 0; }
+.workshop__note { font-weight: 700; font-size: .95rem; color: var(--clay) !important; }
