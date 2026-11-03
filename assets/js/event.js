@@ -276,6 +276,9 @@
       link.hidden = !url;
       if (url) link.href = url;
     });
+    // "choose how to pay" only makes sense when there is more than one option
+    const choose = $("[data-pay-choose]", dlg);
+    if (choose) choose.hidden = !(deal.bit && deal.paybox);
     const soon = $(".pay-tip--soon", dlg);
     if (soon) soon.parentNode.removeChild(soon);
     if (!deal.bit && !deal.paybox) {
