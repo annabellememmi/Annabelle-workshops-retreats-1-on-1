@@ -197,6 +197,31 @@
     if (friendToggle.checked) $("input", friendField).focus();
   });
   const priceNow = () => (withFriend() ? EV.friend : tier);
+  let invited = null; // { me, friend } when she registered with a friend
+
+  // "מחכה לכן הטבה" opens a small panel
+  const perk = $("[data-friend-perk]");
+  if (perk) perk.addEventListener("click", () => {
+    const panel = document.getElementById("friend-panel");
+    panel.hidden = !panel.hidden;
+    perk.setAttribute("aria-expanded", String(!panel.hidden));
+  });
+  const startWithFriend = (name) => {
+    if (!friendToggle) return;
+    friendToggle.checked = true;
+    friendField.hidden = false;
+    if (name) $("input", friendField).value = name;
+  };
+  $$("[data-with-friend]").forEach((b) => b.addEventListener("click", () => startWithFriend()));
+
+  // arriving from a friend's invite (?with=NAME): open the form with the friend price ready
+  const invitedBy = new URLSearchParams(location.search).get("with");
+  if (invitedBy) setTimeout(() => {
+    startWithFriend(invitedBy.slice(0, 40));
+    if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
+    showStep(0);
+    $("#f-name", form).focus();
+  }, 600);
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -206,6 +231,7 @@
     const data = Object.fromEntries(new FormData(form));
     delete data.terms;
     const deal = priceNow();
+    invited = withFriend() ? { me: data.name.trim().split(" ")[0], friend: data.friend.trim() } : null;
     if (withFriend()) data.from = data.from + " · מגיעה עם חברה: " + data.friend.trim();
     delete data.withfriend;
     delete data.friend;
@@ -260,7 +286,30 @@
   setPayment(tier);
   $("[data-paid]", dlg).addEventListener("click", () => {
     send({ action: "paid_reported", id: regId });
+    const box = $("[data-friend-invite]", dlg);
+    if (box) {
+      box.hidden = !invited;
+      if (invited) $("[data-friend-name]", box).textContent = invited.friend.split(" ")[0];
+    }
     showStep(2);
+  });
+
+  // send the friend a ready-made invite: the image itself where the phone can share files, otherwise a WhatsApp link
+  const sendInvite = $("[data-send-invite]", dlg);
+  if (sendInvite) sendInvite.addEventListener("click", async () => {
+    if (!invited) return;
+    const url = new URL("invite.html?with=" + encodeURIComponent(invited.me), location.href).href;
+    const text = "היי 💛 נרשמתי לערב \"מתחברת חזרה לעצמך באהבה\" ושמרתי לך מקום לידי!\n" +
+      "כשבאות יחד כל אחת משלמת 220 ₪ במקום 250 ₪. כל הפרטים והרשמה כאן:\n" + url;
+    try {
+      const img = await fetch(new URL("../../assets/img/friend-invite.jpg", location.href)).then((r) => r.blob());
+      const file = new File([img], "invite.jpg", { type: "image/jpeg" });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], text });
+        return;
+      }
+    } catch (e) { if (e && e.name === "AbortError") return; }
+    open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
   });
   $("[data-back]", dlg).addEventListener("click", () => showStep(0));
 })();
