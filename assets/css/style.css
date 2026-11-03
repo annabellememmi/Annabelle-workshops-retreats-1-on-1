@@ -642,3 +642,7 @@ h1, h2, h3, .section-title, .about__name, .talk-to-me, .story__quote, .reg__head
 .workshop__sub { margin: -.3em 0 .8em !important; font-weight: 700; color: var(--clay) !important; }
 .journey { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .5em .7em; margin: 1.2em 0 0; font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; color: var(--clay); }
 .journey i { font-style: normal; font-family: var(--font-body, inherit); font-size: 1.1rem; color: var(--sage); }
+@media (max-width: 599px) {
+  .workshop { padding: 24px 16px 20px; }
+  .workshop p:not(.workshop__tag):not(.workshop__sub) { font-size: clamp(.8rem, 3.9vw, 1rem); line-height: 1.75; }
+}
