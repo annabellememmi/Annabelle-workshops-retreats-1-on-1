@@ -6,7 +6,7 @@
    (?me=0 turns counting back on). */
 (function () {
   const EV = window.EVENT;
-  if (!EV || !EV.sheetEndpoint || !navigator.sendBeacon) return;
+  if (!EV || !EV.sheetEndpoint) return;
   const qs = new URLSearchParams(location.search);
   const store = (k, v) => { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } };
   if (qs.get("me") === "1") store("stats-me", "1");
@@ -49,8 +49,15 @@
     const body = new URLSearchParams({ action: "visit", event: EV.id, visit, visitor, returning, source, device,
       seconds: Math.round(activeSecs), scroll: maxScroll, opened });
     ids.forEach((id) => body.set("s_" + id, Math.round(secs[id] || 0)));
-    navigator.sendBeacon(EV.sheetEndpoint, body);
+    // same way the registration form sends (works on iPhone/iPad); sendBeacon as a fallback
+    try {
+      fetch(EV.sheetEndpoint, { method: "POST", mode: "no-cors", keepalive: true, body })
+        .catch(() => { if (navigator.sendBeacon) navigator.sendBeacon(EV.sheetEndpoint, body); });
+    } catch (e) { if (navigator.sendBeacon) navigator.sendBeacon(EV.sheetEndpoint, body); }
   };
+  // report early too, so a visit is saved even if the phone closes the page abruptly
+  setTimeout(send, 8000);
+  setTimeout(send, 40000);
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "hidden") send();
     else { active = Date.now(); Object.keys(since).forEach((id) => (since[id] = Date.now())); }
