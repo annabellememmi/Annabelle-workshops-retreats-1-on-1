@@ -172,7 +172,9 @@
     expectation: (v) => v.trim().length >= 2 || "ספרי לי במילה או שתיים 💛"
   };
   function validate(input) {
-    const res = input.type === "checkbox"
+    const res = input.name === "withfriend" ? true
+      : input.name === "friend" ? (!withFriend() || input.value.trim().length >= 2 || "מה שם החברה שמגיעה איתך?")
+      : input.type === "checkbox"
       ? input.checked || "יש לאשר את התקנון ומדיניות הפרטיות"
       : rules[input.name] ? rules[input.name](input.value) : true;
     const field = input.closest(".field");
@@ -186,6 +188,16 @@
     i.addEventListener("input", () => i.closest(".field").classList.contains("has-error") && validate(i));
   });
 
+  // bring-a-friend: each pays the friend price
+  const friendToggle = $("[data-friend-toggle]", form);
+  const friendField = $("[data-friend-field]", form);
+  const withFriend = () => !!(friendToggle && friendToggle.checked && EV.friend);
+  if (friendToggle) friendToggle.addEventListener("change", () => {
+    friendField.hidden = !friendToggle.checked;
+    if (friendToggle.checked) $("input", friendField).focus();
+  });
+  const priceNow = () => (withFriend() ? EV.friend : tier);
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const inputs = $$("input, textarea", form);
@@ -193,6 +205,10 @@
     if (!ok) { inputs.find((i) => i.closest(".has-error")).focus(); return; }
     const data = Object.fromEntries(new FormData(form));
     delete data.terms;
+    const deal = priceNow();
+    if (withFriend()) data.from = data.from + " · מגיעה עם חברה: " + data.friend.trim();
+    delete data.withfriend;
+    delete data.friend;
     data.phone = normalizePhone(data.phone);
     regName = data.name.trim().split(" ")[0];
     regId = regId || Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
@@ -200,7 +216,7 @@
     btn.disabled = true;
     const label = btn.textContent;
     btn.textContent = "שומרת את הפרטים…";
-    const payload = { action: "register", id: regId, price: tier.price, ...data };
+    const payload = { action: "register", id: regId, price: deal.price, ...data };
     const saved = await send(payload);
     btn.disabled = false;
     btn.textContent = label;
@@ -217,24 +233,31 @@
       $("a", backup).href = "https://wa.me/" + EV.whatsappPhone + "?text=" + encodeURIComponent(msg);
     }
     $$("[data-reg-name]", dlg).forEach((el) => (el.textContent = regName));
+    setPayment(deal);
     showStep(1);
   });
 
-  // payment links
-  const payLinks = { bit: tier.bit, paybox: tier.paybox };
-  $$("[data-pay]", dlg).forEach((a) => {
-    const method = a.dataset.pay;
-    if (payLinks[method]) a.href = payLinks[method];
-    else a.hidden = true;
-    a.addEventListener("click", () => {
-      send({ action: "payment_click", id: regId, method });
-      $(".pay-done", dlg).hidden = false;
+  // payment links (regular price, or the bring-a-friend price)
+  $$("[data-pay]", dlg).forEach((link) => link.addEventListener("click", () => {
+    send({ action: "payment_click", id: regId, method: link.dataset.pay });
+    $(".pay-done", dlg).hidden = false;
+  }));
+  function setPayment(deal) {
+    $$(".pay-summary [data-price]", dlg).forEach((el) => (el.textContent = deal.price));
+    $$(".pay-summary [data-price-label]", dlg).forEach((el) => (el.textContent = deal === tier ? tierName : "מחיר עם חברה"));
+    $$("[data-pay]", dlg).forEach((link) => {
+      const url = deal[link.dataset.pay];
+      link.hidden = !url;
+      if (url) link.href = url;
     });
-  });
-  if (!payLinks.bit && !payLinks.paybox) {
-    $(".pay-options", dlg).insertAdjacentHTML("afterend",
-      `<p class="pay-tip">התשלום בקרוב יעלה לכאן. בינתיים <a href="https://wa.me/${EV.whatsappPhone}">כתבי לי בוואטסאפ</a> ואשמור לך מקום 💛</p>`);
+    const soon = $(".pay-tip--soon", dlg);
+    if (soon) soon.parentNode.removeChild(soon);
+    if (!deal.bit && !deal.paybox) {
+      $(".pay-options", dlg).insertAdjacentHTML("afterend",
+        `<p class="pay-tip pay-tip--soon">התשלום בקרוב יעלה לכאן. בינתיים <a href="https://wa.me/${EV.whatsappPhone}">כתבי לי בוואטסאפ</a> ואשמור לך מקום 💛</p>`);
+    }
   }
+  setPayment(tier);
   $("[data-paid]", dlg).addEventListener("click", () => {
     send({ action: "paid_reported", id: regId });
     showStep(2);
