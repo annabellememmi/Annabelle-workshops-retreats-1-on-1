@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Assistant:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/style.css?v=20261103a">
+  <link rel="stylesheet" href="../../assets/css/style.css?v=20261103c">
 
   <script>
     /* ===== Event settings: edit here ===== */
@@ -31,6 +31,12 @@
         price: 250,
         bit: "https://www.bitpay.co.il/app/share-info?i=iEYSJx40&j=true",
         paybox: "https://links.payboxapp.com/6dYD530vw7b"
+      },
+      // Bring-a-friend price (each pays this). Links still to be created for 220.
+      friend: {
+        price: 220,
+        bit: "",     // TODO: Bit link for 220
+        paybox: "https://links.payboxapp.com/Dokq3pctL7b"
       },
       // Optional price increase. Set to null for one fixed price, or e.g.
       // { from: "2026-11-05T00:00:00+02:00", price: 280, bit: "...", paybox: "..." }
@@ -82,6 +88,12 @@
         <p>בשבילך, שרוצה לקחת זמן לעצמך בתוך השגרה העמוסה, שרוצה להרגיש שרואים אותך, לשים את עצמך במרכז, להשתחרר, ליהנות ולחוות את העוצמה המיוחדת של נשים שמרימות אחת לשנייה.</p>
         <p>ערב שתצאי ממנו מלאה באנרגיית חיים, עם חיוך גדול ותחושה של התחדשות.</p>
         <a class="btn btn--lg" href="#tickets" data-open-register>כן! אני רוצה ערב כזה</a>
+        <p class="friend-note">מגיעה עם חברה? <button class="friend-perk" type="button" data-friend-perk aria-expanded="false" aria-controls="friend-panel">מחכה לכן הטבה 🎁</button></p>
+        <div class="friend-panel" id="friend-panel" hidden>
+          <p><strong>כשבאות יחד, כל אחת משלמת 220 ₪ במקום 250 ₪.</strong></p>
+          <p>כל אחת נרשמת ומשלמת בעצמה. אחרי שתסיימי, תקבלי הזמנה מוכנה לשלוח לחברה שלך, והיא תירשם בלחיצה עם אותה הטבה.</p>
+          <button class="btn" type="button" data-open-register data-with-friend>להרשמה עם חברה</button>
+        </div>
       </div>
     </section>
 
@@ -121,6 +133,67 @@
           </figure>
         </div>
         <p class="taste__note">* אירועים בשיתוף עם מיטל אשכנזי מבית היוצר של ״נענע״</p>
+      </div>
+    </section>
+
+    <!-- ================= TESTIMONIALS ================= -->
+    <section class="section section--cream" id="voices">
+      <div class="wrap">
+        <div class="center reveal">
+          <p class="eyebrow">מה אמרו משתתפות</p>
+          <h2 class="section-title section-title--rule">בקולן שלהן</h2>
+        </div>
+        <div class="quotes">
+          <figure class="quote reveal">
+            <img src="../../assets/img/testimonials/keren.jpg" alt="קרן" width="240" height="240" loading="lazy">
+            <blockquote>״<mark>החזרתם לי את האמון</mark> בבני אדם, סביבה עם אנשים ממש טובים״</blockquote>
+            <figcaption>קרן*</figcaption>
+          </figure>
+          <figure class="quote reveal">
+            <img src="../../assets/img/testimonials/or.jpg" alt="אור" width="240" height="240" loading="lazy">
+            <blockquote>״היה פה משהו סופר נעים וסופר <mark>ביחד, משהו מאוד מאפשר</mark> ועיניים מאוד טובות״</blockquote>
+            <figcaption>אור*</figcaption>
+          </figure>
+          <figure class="quote reveal">
+            <img src="../../assets/img/testimonials/karin.jpg" alt="קארין" width="240" height="240" loading="lazy">
+            <blockquote>״כל אחד הביא משהו באנרגיה שלו שגרם לי להיות כל מיני דברים שרציתי להיות בהם. זה היה חזק <mark>וממש עוצמתי</mark>״</blockquote>
+            <figcaption>קארין*</figcaption>
+          </figure>
+          <figure class="quote reveal">
+            <img src="../../assets/img/testimonials/shani.jpg" alt="שני" width="240" height="240" loading="lazy">
+            <blockquote>״<mark>לכל אחד יש את המקום שלו</mark> להיות הוא ולעבור את התהליך שלו״</blockquote>
+            <figcaption>שני*</figcaption>
+          </figure>
+        </div>
+        <p class="taste__note">* משתתפות בריטריט ״נענע״, בשיתוף עם מיטל אשכנזי</p>
+      </div>
+    </section>
+
+    <!-- ================= WORKSHOPS (texts for the first two still to come) ================= -->
+    <section class="section section--paper" id="workshops">
+      <div class="wrap">
+        <div class="center reveal">
+          <p class="eyebrow">מה נעשה בערב</p>
+          <h2 class="section-title section-title--rule">הסדנאות</h2>
+        </div>
+        <div class="workshops">
+          <article class="workshop reveal">
+            <p class="workshop__tag">סדנת העצמה</p>
+            <h3>הזהויות בתוכי</h3>
+            <p class="workshop__todo">[הטקסט שלך יבוא כאן]</p>
+          </article>
+          <article class="workshop reveal">
+            <p class="workshop__tag">חוגגות את הגוף</p>
+            <h3>עבודת אגן וטוורק</h3>
+            <p class="workshop__todo">[הטקסט שלך יבוא כאן]</p>
+            <p class="workshop__note">מתאים גם למי שאין לה שום ניסיון, וגם למי שכבר רוקדת ורוצה להעמיק בטכניקה.</p>
+          </article>
+          <article class="workshop reveal">
+            <p class="workshop__tag">חוגגות אותנו</p>
+            <h3>אקסטטיק דאנס</h3>
+            <p>ריקוד חופשי, בלי צעדים ובלי כוריאוגרפיה: המוזיקה בונה גל שמתחיל רך ואיטי, עולה בהדרגה לשיא ונרגע בחזרה לשקט. על הרחבה רק זזות כמו שהגוף רוצה, בקצב שלך ובלי שיפוט.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -193,7 +266,8 @@
           </details>
           <details>
             <summary>רוצה לבוא לבד ומתלבטת?</summary>
-            <div class="faq__body"><p>זה בדיוק המקום להכיר נשים חדשות ומדהימות. <a href="https://wa.me/972525826993" target="_blank" rel="noopener">דברי איתי</a> ונעשה היכרות עוד לפני 💛</p></div>
+            <div class="faq__body"><p><strong>הערב מתאים מאוד גם לנשים שבאות לבד.</strong> זה בדיוק המקום להכיר נשים חדשות ומדהימות. <a href="https://wa.me/972525826993" target="_blank" rel="noopener">דברי איתי</a> ונעשה היכרות עוד לפני 💛</p>
+              <p><strong>ואם יש לך חברה שתשמח להצטרף,</strong> כשבאות יחד כל אחת משלמת 220 ₪ במקום 250 ₪.</p></div>
           </details>
         </div>
       </div>
@@ -307,6 +381,15 @@
             <textarea id="f-exp" name="expectation" required></textarea>
             <div class="field__error"></div>
           </div>
+          <div class="field field--check field--friend">
+            <label><input type="checkbox" name="withfriend" data-friend-toggle><span>אני מגיעה עם חברה (220 ₪ לכל אחת במקום 250 ₪)</span></label>
+            <div class="field__error"></div>
+          </div>
+          <div class="field" data-friend-field hidden>
+            <label for="f-friend">שם החברה <span class="req">*</span></label>
+            <input id="f-friend" name="friend" type="text" autocomplete="off" placeholder="היא נרשמת בנפרד, עם השם שלה">
+            <div class="field__error"></div>
+          </div>
           <div class="field field--check">
             <label><input type="checkbox" name="terms" required><span>קראתי ואני מסכימה <a href="../../terms.html" target="_blank" rel="noopener">לתקנון הרכישה</a> ו<a href="../../privacy.html" target="_blank" rel="noopener">למדיניות הפרטיות</a> <span class="req">*</span></span></label>
             <div class="field__error"></div>
@@ -340,6 +423,10 @@
         <div class="done__emoji">🌿</div>
         <h3>איזה כיף, <span data-reg-name></span>!</h3>
         <p>ברגע שאראה את התשלום תקבלי ממני הודעת וואטסאפ עם אישור וכל פרטי הערב.<br>מחכה לך <svg class="heart" viewBox="0 0 24 24" aria-label="לב"><path fill="currentColor" d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 2.9 4.5 6.6 4.5c2.1 0 3.5 1.1 4.4 2.5.9-1.4 2.3-2.5 4.4-2.5 3.7 0 5.7 3.8 4.2 7.2C19.5 16.4 12 21 12 21Z"/></svg></p>
+        <div class="friend-invite" data-friend-invite hidden>
+          <p><strong>עכשיו תורה של <span data-friend-name></span> 💛</strong><br>שלחי לה הזמנה מוכנה, והיא תירשם עם אותה הטבה.</p>
+          <button class="btn btn--block" type="button" data-send-invite>שליחת ההזמנה לחברה</button>
+        </div>
         <div class="done__links">
           <a class="btn btn--block" href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSd8lgVty1KuWljnaJg-dvXGUKiHKcRXobr_hWmcfZoYoVJK_Q/viewform?usp=send_form" target="_blank" rel="noopener">למילוי הצהרת בריאות</a>
           <a class="btn btn--ghost btn--block" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%D7%9E%D7%AA%D7%97%D7%91%D7%A8%D7%AA%20%D7%97%D7%96%D7%A8%D7%94%20%D7%9C%D7%A2%D7%A6%D7%9E%D7%9A%20%D7%91%D7%90%D7%94%D7%91%D7%94&dates=20261112T160000Z/20261112T210000Z&location=%D7%AA%D7%9C%D7%9E%D7%99%20%D7%90%D7%9C%D7%A2%D7%96%D7%A8" target="_blank" rel="noopener">הוספה ליומן 📅</a>
@@ -351,7 +438,7 @@
   </dialog>
 
   <script src="../../assets/js/spiral.js?v=20261029c"></script>
-  <script src="../../assets/js/event.js?v=20261103a"></script>
-  <script src="../../assets/js/stats.js?v=20261103a"></script>
+  <script src="../../assets/js/event.js?v=20261103c"></script>
+  <script src="../../assets/js/stats.js?v=20261103c"></script>
 </body>
 </html>
