@@ -303,7 +303,7 @@
     if (!invited) return;
     const url = new URL("invite.html?with=" + encodeURIComponent(invited.me), location.href).href;
     const text = "היי 💛 נרשמתי לערב \"מתחברת חזרה לעצמך באהבה\" ושמרתי לך מקום לידי!\n" +
-      "כשבאות יחד כל אחת משלמת 220 ₪ במקום 250 ₪. כל הפרטים והרשמה כאן:\n" + url;
+      "כשבאות יחד כל אחת משלמת 220 ₪ במקום 250 ₪.\n\nכל הפרטים וההרשמה כאן:\n" + url;
     try {
       const img = await fetch(new URL("../../assets/img/friend-invite.jpg", location.href)).then((r) => r.blob());
       const file = new File([img], "invite.jpg", { type: "image/jpeg" });
