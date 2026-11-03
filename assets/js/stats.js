@@ -23,7 +23,7 @@
   const device = matchMedia("(max-width: 899px)").matches ? "נייד" : "מחשב";
 
   // seconds each section was at least 40% on screen
-  const ids = ["top", "story", "taste", "voices", "venue", "workshops", "agenda", "about", "faq", "tickets", "contact"];
+  const ids = ["top", "story", "taste", "voices", "workshops", "agenda", "about", "venue", "faq", "tickets", "contact"];
   const secs = {}, since = {};
   const tick = (id) => { if (since[id]) { secs[id] = (secs[id] || 0) + (Date.now() - since[id]) / 1000; since[id] = Date.now(); } };
   if ("IntersectionObserver" in window) {
