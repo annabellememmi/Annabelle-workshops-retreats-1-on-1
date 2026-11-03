@@ -635,3 +635,7 @@ h1, h2, h3, .section-title, .about__name, .talk-to-me, .story__quote, .reg__head
 .friend-invite[hidden] { display: none; }
 .friend-invite p { margin: 0 0 .8em; }
 .quote mark { background: none; color: var(--clay); font-weight: 700; }
+.ticket__friend { margin-top: 10px; }
+.field--friend { background: #F7EADF; border-radius: var(--radius-sm); padding: 14px 16px; box-shadow: inset 0 0 0 1px rgba(192, 138, 99, .35); }
+.field--friend strong { color: var(--earth); }
+.ticket__friend-note { margin: .5em 0 0; font-size: .9rem; font-weight: 700; color: var(--clay); }
