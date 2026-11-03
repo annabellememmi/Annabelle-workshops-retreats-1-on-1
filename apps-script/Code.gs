@@ -27,8 +27,11 @@ const GROUP_LINK = 'https://chat.whatsapp.com/Dou0kksJlg2AmYRe2pUojQ';
 const VISITS_SHEET = 'כניסות לאתר';
 const SECTIONS = [
   ['top', 'פתיחה'], ['story', 'מתי בפעם האחרונה'], ['venue', 'הלוקיישן'], ['taste', 'אירועים קודמים'],
-  ['about', 'מי אני'], ['agenda', 'מהלך הערב'], ['faq', 'פרטים חשובים'], ['tickets', 'כרטיס ומחיר'], ['contact', 'שמירה על קשר']
+  ['about', 'מי אני'], ['agenda', 'מהלך הערב'], ['faq', 'פרטים חשובים'], ['tickets', 'כרטיס ומחיר'], ['contact', 'שמירה על קשר'],
+  ['voices', 'משתתפות משתפות'] // added later, so its column is last
 ];
+// the order the sections appear on the page (for the e-mail report)
+const PAGE_ORDER = ['top', 'story', 'taste', 'voices', 'venue', 'about', 'agenda', 'faq', 'tickets', 'contact'];
 const VISIT_HEADERS = ['תאריך', 'מזהה ביקור', 'מבקרת', 'חוזרת?', 'מקור', 'מכשיר', 'שניות בדף', 'גלילה %', 'פתחה טופס?']
   .concat(SECTIONS.map(([, he]) => 'שניות: ' + he));
 
@@ -128,6 +131,8 @@ function getVisitsSheet_() {
     sh.getRange(1, 1, 1, VISIT_HEADERS.length).setValues([VISIT_HEADERS]).setFontWeight('bold').setBackground('#DAD8D1');
     sh.setFrozenRows(1);
     sh.setRightToLeft(true);
+  } else if (sh.getLastColumn() < VISIT_HEADERS.length) {
+    sh.getRange(1, 1, 1, VISIT_HEADERS.length).setValues([VISIT_HEADERS]).setFontWeight('bold').setBackground('#DAD8D1');
   }
   return sh;
 }
@@ -145,7 +150,11 @@ function visitSummary_(from) {
   const mobile = rows.filter((r) => r[5] === 'נייד').length;
   const sources = {};
   rows.forEach((r) => (sources[r[4]] = (sources[r[4]] || 0) + 1));
-  const bySection = SECTIONS.map(([, he], i) => [he, avg(rows.map((r) => r[9 + i])), rows.filter((r) => r[9 + i] >= 2).length]);
+  const bySection = PAGE_ORDER.map((id) => {
+    const i = SECTIONS.findIndex(([x]) => x === id);
+    const col = rows.map((r) => Number(r[9 + i]) || 0);
+    return [SECTIONS[i][1], avg(col), col.filter((v) => v >= 2).length];
+  });
   const fmt = (s) => (s >= 60 ? Math.floor(s / 60) + ' דק׳ ' + Math.round(s % 60) + ' שנ׳' : Math.round(s) + ' שנ׳');
   return 'כניסות: ' + rows.length + '\n' +
     'מבקרות שונות: ' + people + '\n' +
