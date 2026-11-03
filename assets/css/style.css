@@ -599,7 +599,7 @@ h1, h2, h3, .section-title, .about__name, .talk-to-me, .story__quote, .reg__head
 .taste__grid .taste__item--landscape { grid-column: 1 / -1; aspect-ratio: 2 / 1; }
 .taste__item { position: relative; }
 .taste__star { position: absolute; top: 8px; inset-inline-start: 12px; color: #FAF8F3; font-weight: 800; font-size: 1.5rem; line-height: 1; text-shadow: 0 1px 6px rgba(0, 0, 0, .55); pointer-events: none; }
-.taste__note { max-width: 640px; margin: 1.2em auto 0; font-size: .9rem; color: var(--ink-soft); text-align: center; }
+.taste__note { max-width: 640px; margin: 3.2em auto -1.2em; font-size: .74rem; color: var(--ink-soft); opacity: .7; text-align: center; }
 
 /* workshops: a short taste of each part of the evening */
 .workshops { display: grid; gap: 18px; margin-top: 2.2em; }
@@ -635,4 +635,3 @@ h1, h2, h3, .section-title, .about__name, .talk-to-me, .story__quote, .reg__head
 .friend-invite[hidden] { display: none; }
 .friend-invite p { margin: 0 0 .8em; }
 .quote mark { background: none; color: var(--clay); font-weight: 700; }
-.footer__fine { margin-top: 1em !important; font-size: .74rem; opacity: .7; }
