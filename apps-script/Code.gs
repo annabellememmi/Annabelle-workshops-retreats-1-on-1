@@ -1,5 +1,5 @@
 /**
- * Saves registrations from the event landing pages into a Google Sheet,
+ * Saves registrations (and anonymous visit stats) from the event landing pages into a Google Sheet,
  * emails Annabelle on every sign-up, and adds a one-tap WhatsApp
  * confirmation link (to the personal confirmation page) for each registrant.
  * Works inside a sheet (Extensions > Apps Script) or as a standalone
@@ -23,6 +23,15 @@ const CALLMEBOT_APIKEY = '';  // the key CallMeBot sends you
 const SITE = 'https://annabellememmi.github.io/Annabelle-workshops-retreats-1-on-1/events/reconnect-nov-2026/';
 const GROUP_LINK = 'https://chat.whatsapp.com/Dou0kksJlg2AmYRe2pUojQ';
 
+// ---- anonymous visit stats ----
+const VISITS_SHEET = 'כניסות לאתר';
+const SECTIONS = [
+  ['top', 'פתיחה'], ['story', 'מתי בפעם האחרונה'], ['venue', 'הלוקיישן'], ['taste', 'אירועים קודמים'],
+  ['about', 'מי אני'], ['agenda', 'מהלך הערב'], ['faq', 'פרטים חשובים'], ['tickets', 'כרטיס ומחיר'], ['contact', 'שמירה על קשר']
+];
+const VISIT_HEADERS = ['תאריך', 'מזהה ביקור', 'מבקרת', 'חוזרת?', 'מקור', 'מכשיר', 'שניות בדף', 'גלילה %', 'פתחה טופס?']
+  .concat(SECTIONS.map(([, he]) => 'שניות: ' + he));
+
 /** Run once from the editor: creates the sheet and its headers, and logs its link. */
 function setup() {
   const sh = getSheet_();
@@ -36,6 +45,7 @@ function setup() {
 }
 
 function doPost(e) {
+  if (e.parameter.action === 'visit') return recordVisit_(e.parameter);
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
   let alert = null;
@@ -85,6 +95,86 @@ function doPost(e) {
   if (alert) notify_(alert.subject, alert.body);
   checkMilestones_();
   return ContentService.createTextOutput('ok');
+}
+
+/** Saves (or updates) one row per visit. A visit may report several times; the row is overwritten. */
+function recordVisit_(p) {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    const sh = getVisitsSheet_();
+    const row = [new Date(), p.visit, p.visitor, p.returning === '1' ? 'כן' : 'לא', p.source || '', p.device || '',
+      Number(p.seconds) || 0, Number(p.scroll) || 0, p.opened === '1' ? 'כן' : 'לא']
+      .concat(SECTIONS.map(([id]) => Number(p['s_' + id]) || 0));
+    const last = sh.getLastRow();
+    let r = 0;
+    if (last > 1) {
+      const n = Math.min(last - 1, 300); // only recent rows are checked
+      const ids = sh.getRange(last - n + 1, 2, n, 1).getValues();
+      const i = ids.map((x) => x[0]).lastIndexOf(p.visit);
+      if (i !== -1) r = last - n + 1 + i;
+    }
+    if (r) { row[0] = sh.getRange(r, 1).getValue(); sh.getRange(r, 1, 1, row.length).setValues([row]); }
+    else sh.appendRow(row);
+  } finally { lock.releaseLock(); }
+  return ContentService.createTextOutput('ok');
+}
+
+function getVisitsSheet_() {
+  const ss = getSheet_().getParent();
+  let sh = ss.getSheetByName(VISITS_SHEET);
+  if (!sh) {
+    sh = ss.insertSheet(VISITS_SHEET);
+    sh.getRange(1, 1, 1, VISIT_HEADERS.length).setValues([VISIT_HEADERS]).setFontWeight('bold').setBackground('#DAD8D1');
+    sh.setFrozenRows(1);
+    sh.setRightToLeft(true);
+  }
+  return sh;
+}
+
+/** Builds the stats summary for visits since `from` (a Date). */
+function visitSummary_(from) {
+  const sh = getVisitsSheet_();
+  const last = sh.getLastRow();
+  const rows = last > 1 ? sh.getRange(2, 1, last - 1, VISIT_HEADERS.length).getValues().filter((r) => r[0] >= from) : [];
+  if (!rows.length) return 'אין כניסות בתקופה הזו.';
+  const people = new Set(rows.map((r) => r[2])).size;
+  const avg = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0);
+  const secs = rows.map((r) => r[6]);
+  const opened = rows.filter((r) => r[8] === 'כן').length;
+  const mobile = rows.filter((r) => r[5] === 'נייד').length;
+  const sources = {};
+  rows.forEach((r) => (sources[r[4]] = (sources[r[4]] || 0) + 1));
+  const bySection = SECTIONS.map(([, he], i) => [he, avg(rows.map((r) => r[9 + i])), rows.filter((r) => r[9 + i] >= 2).length]);
+  const fmt = (s) => (s >= 60 ? Math.floor(s / 60) + ' דק׳ ' + Math.round(s % 60) + ' שנ׳' : Math.round(s) + ' שנ׳');
+  return 'כניסות: ' + rows.length + '\n' +
+    'מבקרות שונות: ' + people + '\n' +
+    'זמן ממוצע בדף: ' + fmt(avg(secs)) + '\n' +
+    'גלילה ממוצעת: ' + Math.round(avg(rows.map((r) => r[7]))) + '%\n' +
+    'פתחו את טופס ההרשמה: ' + opened + ' (' + Math.round(100 * opened / rows.length) + '%)\n' +
+    'מנייד: ' + Math.round(100 * mobile / rows.length) + '%\n\n' +
+    'כמה זמן התעכבו בכל חלק (ממוצע) · כמה הגיעו אליו:\n' +
+    bySection.map(([he, a, n]) => '• ' + he + ': ' + fmt(a) + ' · ' + Math.round(100 * n / rows.length) + '%').join('\n') + '\n\n' +
+    'מאיפה הגיעו:\n' +
+    Object.entries(sources).sort((a, b) => b[1] - a[1]).map(([k, v]) => '• ' + k + ': ' + v).join('\n');
+}
+
+/** Daily e-mail: yesterday's visits plus totals since the start. Runs from the trigger made by setupDailyReport(). */
+function dailyReport() {
+  const now = new Date();
+  const dayAgo = new Date(now.getTime() - 24 * 3600 * 1000);
+  const body = '📊 24 השעות האחרונות\n' + visitSummary_(dayAgo) +
+    '\n\n📈 מאז ההתחלה\n' + visitSummary_(new Date(0)) +
+    '\n\nכל הנתונים בלשונית "' + VISITS_SHEET + '": ' + getSheet_().getParent().getUrl();
+  MailApp.sendEmail(NOTIFY_EMAIL, '📊 עדכון יומי: כניסות לדף "מתחברת חזרה לעצמך באהבה"', body);
+}
+
+/** Run once from the editor: sends the stats e-mail every morning at 8:00. */
+function setupDailyReport() {
+  ScriptApp.getProjectTriggers().filter((t) => t.getHandlerFunction() === 'dailyReport').forEach((t) => ScriptApp.deleteTrigger(t));
+  ScriptApp.newTrigger('dailyReport').timeBased().everyDays(1).atHour(8).inTimezone('Asia/Jerusalem').create();
+  getVisitsSheet_();
+  Logger.log('העדכון היומי הופעל: כל בוקר ב־8:00');
 }
 
 /** Sends one celebratory e-mail per milestone (20, 25, 30 registrations). Each is sent only once. */
