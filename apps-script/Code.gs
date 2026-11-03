@@ -28,10 +28,10 @@ const VISITS_SHEET = 'כניסות לאתר';
 const SECTIONS = [
   ['top', 'פתיחה'], ['story', 'מתי בפעם האחרונה'], ['venue', 'הלוקיישן'], ['taste', 'אירועים קודמים'],
   ['about', 'מי אני'], ['agenda', 'מהלך הערב'], ['faq', 'פרטים חשובים'], ['tickets', 'כרטיס ומחיר'], ['contact', 'שמירה על קשר'],
-  ['voices', 'משתתפות משתפות'] // added later, so its column is last
+  ['voices', 'משתתפות משתפות'], ['workshops', 'הסדנאות'] // added later, so their columns are last
 ];
 // the order the sections appear on the page (for the e-mail report)
-const PAGE_ORDER = ['top', 'story', 'taste', 'voices', 'venue', 'about', 'agenda', 'faq', 'tickets', 'contact'];
+const PAGE_ORDER = ['top', 'story', 'taste', 'voices', 'venue', 'about', 'workshops', 'agenda', 'faq', 'tickets', 'contact'];
 const VISIT_HEADERS = ['תאריך', 'מזהה ביקור', 'מבקרת', 'חוזרת?', 'מקור', 'מכשיר', 'שניות בדף', 'גלילה %', 'פתחה טופס?']
   .concat(SECTIONS.map(([, he]) => 'שניות: ' + he));
 
