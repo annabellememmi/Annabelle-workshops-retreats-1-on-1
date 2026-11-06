@@ -305,7 +305,7 @@
     const text = "היי 💛 נרשמתי לערב \"מתחברת חזרה לעצמך באהבה\" ושמרתי לך מקום לידי!\n" +
       "כשבאות יחד כל אחת משלמת 220 ₪ במקום 250 ₪.\n\nכל הפרטים וההרשמה כאן:\n" + url;
     try {
-      const img = await fetch(new URL("../../assets/img/friend-invite.jpg", location.href)).then((r) => r.blob());
+      const img = await fetch(new URL("../../assets/img/friend-invite-v2.jpg", location.href)).then((r) => r.blob());
       const file = new File([img], "invite.jpg", { type: "image/jpeg" });
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({ files: [file], text });
