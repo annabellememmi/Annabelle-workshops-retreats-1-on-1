@@ -253,7 +253,7 @@
     const backup = $("[data-backup]", dlg);
     if (backup) {
       backup.hidden = saved;
-      const msg = "היי אנאבל, נרשמתי לערב ״מתחברת חזרה לעצמך באהבה״ 🌿\n" +
+      const msg = "היי אנאבל, נרשמתי למיני ריטריט ״מתחברת חזרה לעצמך באהבה״ 🌿\n" +
         "שם: " + data.name + "\nטלפון: " + data.phone + "\nאימייל: " + data.email +
         "\nמאיפה: " + data.from + "\nמה הייתי רוצה להעז: " + data.expectation;
       $("a", backup).href = "https://wa.me/" + EV.whatsappPhone + "?text=" + encodeURIComponent(msg);
@@ -302,7 +302,7 @@
   if (sendInvite) sendInvite.addEventListener("click", async () => {
     if (!invited) return;
     const url = new URL("invite.html?with=" + encodeURIComponent(invited.me), location.href).href;
-    const text = "היי 💛 נרשמתי לערב \"מתחברת חזרה לעצמך באהבה\" ושמרתי לך מקום לידי!\n" +
+    const text = "היי 💛 נרשמתי למיני ריטריט \"מתחברת חזרה לעצמך באהבה\" ושמרתי לך מקום לידי!\n" +
       "כשבאות יחד כל אחת משלמת 220 ₪ במקום 250 ₪.\n\nכל הפרטים וההרשמה כאן:\n" + url;
     try {
       const img = await fetch(new URL("../../assets/img/friend-invite-v2.jpg", location.href)).then((r) => r.blob());
