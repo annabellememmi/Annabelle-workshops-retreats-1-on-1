@@ -514,7 +514,21 @@ body::after {
 .footer__biz p { margin: 0; }
 .footer__biz strong { color: var(--cream); font-weight: 700; }
 .field--check label { display: flex; gap: .55em; align-items: flex-start; font-weight: 600; font-size: .95rem; line-height: 1.5; cursor: pointer; }
-.field--check input { width: 20px; height: 20px; margin-top: .15em; flex: none; accent-color: var(--moss); }
+.field--check label { padding: 6px 0; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.field--check input[type="checkbox"] {
+  -webkit-appearance: none; appearance: none; box-sizing: border-box;
+  width: 26px; height: 26px; min-width: 26px; padding: 0; margin: 0; flex: none;
+  border: 2px solid var(--moss); border-radius: 7px; background: #fff;
+  display: grid; place-content: center; cursor: pointer; box-shadow: none;
+}
+.field--check input[type="checkbox"]::after {
+  content: ""; width: 7px; height: 13px; margin-top: -3px;
+  border: solid #fff; border-width: 0 3px 3px 0; transform: rotate(45deg) scale(0); transition: transform .12s;
+}
+.field--check input[type="checkbox"]:checked { background: var(--moss); }
+.field--check input[type="checkbox"]:checked::after { transform: rotate(45deg) scale(1); }
+.field--check input[type="checkbox"]:focus-visible { outline: 3px solid rgba(97, 130, 94, .35); outline-offset: 2px; }
+.field.has-error input[type="checkbox"] { border-color: #B4442E; }
 .field--check a { color: var(--clay); }
 
 /* legal pages */
@@ -646,3 +660,4 @@ h1, h2, h3, .section-title, .about__name, .talk-to-me, .story__quote, .reg__head
   .workshop { padding: 24px 16px 20px; }
   .workshop p:not(.workshop__tag):not(.workshop__sub) { font-size: clamp(.8rem, 3.9vw, 1rem); line-height: 1.75; }
 }
+html.reg-open .float-cta, html.reg-open .wa-float { display: none !important; }

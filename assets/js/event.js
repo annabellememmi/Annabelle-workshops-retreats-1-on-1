@@ -155,6 +155,9 @@
     if (!regId) showStep(0);
     setTimeout(() => { const f = $("input", dlg); if (f && !regId) f.focus(); }, 50);
   }));
+  // hide the floating buttons while the form is open, so nothing covers the checkboxes
+  new MutationObserver(() => document.documentElement.classList.toggle("reg-open", dlg.hasAttribute("open")))
+    .observe(dlg, { attributes: true, attributeFilter: ["open"] });
   $(".reg__close", dlg).addEventListener("click", () => dlg.close());
   dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
 
