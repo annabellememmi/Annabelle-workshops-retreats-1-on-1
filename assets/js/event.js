@@ -226,6 +226,13 @@
     $("#f-name", form).focus();
   }, 600);
 
+  // direct link to the form: ?register (or #register) opens it on arrival
+  const qsReg = new URLSearchParams(location.search);
+  if (!invitedBy && (qsReg.has("register") || location.hash === "#register")) setTimeout(() => {
+    if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
+    showStep(0);
+  }, 600);
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const inputs = $$("input, textarea", form);
