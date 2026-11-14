@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Assistant:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/style.css?v=20261111a">
+  <link rel="stylesheet" href="../../assets/css/style.css?v=20261114a">
 
   <script>
     /* ===== Event settings: edit here ===== */
@@ -322,6 +322,29 @@
     </section>
 
     <!-- ================= CONTACT ================= -->
+    <section class="section section--sand" id="remind">
+      <div class="wrap center">
+        <div class="remind reveal">
+          <p class="talk-to-me">עוד לא בטוחה?<br>אשמח לשלוח לך תזכורת</p>
+          <form class="remind__form" data-remind-form="page" novalidate>
+            <div class="field">
+              <label for="rm-name">שם</label>
+              <input id="rm-name" name="name" type="text" autocomplete="name" required>
+              <div class="field__error"></div>
+            </div>
+            <div class="field">
+              <label for="rm-phone">טלפון נייד (לוואטסאפ)</label>
+              <input id="rm-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="050-0000000" required>
+              <div class="field__error"></div>
+            </div>
+            <button class="btn btn--block" type="submit">תזכירי לי 🌙</button>
+            <p class="remind__fine">אשלח לך עד 3 הודעות וואטסאפ עד הערב, ולא יותר.</p>
+          </form>
+          <div class="remind__done" hidden><p class="talk-to-me">תודה! 💛</p><p>אשלח לך תזכורת עדינה בוואטסאפ לפני הערב.</p></div>
+        </div>
+      </div>
+    </section>
+
     <section class="section section--sand" id="contact">
       <div class="wrap center">
         <div class="reveal">
@@ -361,6 +384,35 @@
   </a>
 
   <!-- ================= REGISTRATION ================= -->
+  <dialog class="reg reg--exit" id="exit-remind" aria-labelledby="exit-title">
+    <div class="reg__head">
+      <button class="reg__close" type="button" aria-label="סגירה">×</button>
+      <h2 id="exit-title">רגע לפני שאת הולכת… 🌙</h2>
+      <p>יום חמישי 19.11 · תלמי אלעזר</p>
+    </div>
+    <div class="reg__body">
+      <div class="remind">
+        <p class="remind__lead">עוד לא בטוחה? השאירי שם וטלפון, ואשלח לך תזכורת עדינה לפני הערב.</p>
+        <form class="remind__form" data-remind-form="exit" novalidate>
+          <div class="field">
+              <label for="ex-name">שם</label>
+              <input id="ex-name" name="name" type="text" autocomplete="name" required>
+              <div class="field__error"></div>
+            </div>
+            <div class="field">
+              <label for="ex-phone">טלפון נייד (לוואטסאפ)</label>
+              <input id="ex-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="050-0000000" required>
+              <div class="field__error"></div>
+            </div>
+            <button class="btn btn--block" type="submit">תזכירי לי 🌙</button>
+            <p class="remind__fine">אשלח לך עד 3 הודעות וואטסאפ עד הערב, ולא יותר.</p>
+        </form>
+        <div class="remind__done" hidden><p class="talk-to-me">תודה! 💛</p><p>אשלח לך תזכורת בוואטסאפ לפני הערב.</p></div>
+        <p class="remind__alt"><a href="#tickets" data-open-register>בעצם, אני רוצה להירשם עכשיו</a></p>
+      </div>
+    </div>
+  </dialog>
+
   <dialog class="reg" id="register" aria-labelledby="reg-title">
     <div class="reg__head">
       <button class="reg__close" type="button" aria-label="סגירה">×</button>
@@ -455,7 +507,8 @@
   </dialog>
 
   <script src="../../assets/js/spiral.js?v=20261029c"></script>
-  <script src="../../assets/js/event.js?v=20261113a"></script>
+  <script src="../../assets/js/event.js?v=20261114a"></script>
   <script src="../../assets/js/stats.js?v=20261103n"></script>
+  <script src="../../assets/js/remind.js?v=20261114a"></script>
 </body>
 </html>

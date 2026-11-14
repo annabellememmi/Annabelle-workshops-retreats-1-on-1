@@ -257,6 +257,7 @@
     btn.disabled = false;
     btn.textContent = label;
     try {
+      localStorage.setItem("registered-" + EV.id, "1"); // no "remind me" pop-up for her any more
       if (saved) localStorage.removeItem(PENDING);
       else localStorage.setItem(PENDING, JSON.stringify(payload));
     } catch (err) {}

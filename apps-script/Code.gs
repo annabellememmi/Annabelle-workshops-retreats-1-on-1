@@ -49,6 +49,7 @@ function setup() {
 
 function doPost(e) {
   if (e.parameter.action === 'visit') return recordVisit_(e.parameter);
+  if (e.parameter.action === 'remind') return recordReminder_(e.parameter);
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
   let alert = null;
@@ -203,6 +204,64 @@ function checkMilestones_() {
     });
     props.setProperty('MILESTONES_SENT', JSON.stringify(sent));
   } catch (err) { console.error(err); }
+}
+
+// ---- "not sure yet, remind me" requests ----
+const REMIND_SHEET = 'ביקשו תזכורת';
+const REMIND_HEADERS = ['תאריך', 'מזהה', 'שם', 'טלפון', 'מאיפה בדף', 'נרשמה בסוף?',
+  '📲 תזכורת 1 · מיד', '📲 תזכורת 2 · 16–17.11', '📲 תזכורת 3 · 18.11', 'הערות'];
+const OPT_OUT = '\n\n(לא רלוונטי? השיבי "הסר" ולא אשלח יותר)';
+const REMINDERS = [
+  (first) => 'היי ' + first + ' 🌙 כאן אנאבל. תודה שהשארת פרטים לערב "מתחברת חזרה לעצמך באהבה".\n\n' +
+    'הערב יתקיים ביום חמישי 19.11, 18:00–23:00, בתלמי אלעזר. אשלח לך תזכורת קרובה יותר למועד, ואם עולה לך שאלה – אני כאן 💛\n\n' +
+    'כל הפרטים: ' + SITE + OPT_OUT,
+  (first) => 'היי ' + first + ', רק תזכורת עדינה 🌿 ביום חמישי הקרוב נפגשות במעגל נשים – ערב של לעצור, לנשום, לרקוד ולחזור אל עצמך.\n\n' +
+    'נשארו עוד כמה מקומות. אם את מרגישה שזה בשבילך, ההרשמה כאן:\n' + SITE + '?register' + OPT_OUT,
+  (first) => first + ', מחר בערב זה קורה 🌕 אם משהו בך עוד מתלבט – אולי זה בדיוק הסימן להגיע.\n\n' +
+    'הרשמה אחרונה: ' + SITE + '?register\n\nואם לא הפעם, אשמח לפגוש אותך במעגל הבא 💛' + OPT_OUT
+];
+
+/** Saves (or updates) a reminder request and alerts Annabelle. Answers "ok:remind" so the page knows this script version saved it. */
+function recordReminder_(p) {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  let isNew = false;
+  try {
+    const sh = getRemindSheet_();
+    const ids = sh.getLastRow() > 1 ? sh.getRange(2, 2, sh.getLastRow() - 1, 1).getValues().map((x) => x[0]) : [];
+    const i = ids.indexOf(p.id);
+    const r = i === -1 ? sh.getLastRow() + 1 : i + 2;
+    isNew = i === -1;
+    sh.getRange(r, 1, 1, 5).setValues([[new Date(), p.id, p.name, "'" + p.phone, p.source === 'exit' ? 'חלון יציאה' : 'טופס בדף']]);
+    sh.getRange(r, 6).setFormula('=IF(ISNUMBER(MATCH(D' + r + ',\'' + SHEET_NAME + '\'!E:E,0)),"✔ נרשמה – לא לשלוח","")');
+    sh.getRange(r, 7, 1, 3).setFormulas([REMINDERS.map((make, k) => reminderFormula_(p.name, p.phone, make, k + 1))]);
+  } finally {
+    lock.releaseLock();
+  }
+  if (isNew) notify_('🔔 ביקשה תזכורת: ' + p.name,
+    p.name + ' (' + p.phone + ') עוד לא בטוחה, וביקשה תזכורת לערב.\n\n' +
+    'בגיליון, בלשונית "' + REMIND_SHEET + '", יש לה שלושה קישורים מוכנים לשליחה בוואטסאפ.');
+  return ContentService.createTextOutput('ok:remind');
+}
+
+function reminderFormula_(name, phone, make, n) {
+  let digits = String(phone).replace(/\D/g, '');
+  if (digits.startsWith('0')) digits = '972' + digits.slice(1);
+  const first = String(name).trim().split(/\s+/)[0];
+  const url = 'https://wa.me/' + digits + '?text=' + encodeURIComponent(make(first));
+  return '=HYPERLINK("' + url.replace(/"/g, '""') + '","📲 שליחה ' + n + '")';
+}
+
+function getRemindSheet_() {
+  const ss = getSheet_().getParent();
+  let sh = ss.getSheetByName(REMIND_SHEET);
+  if (!sh) {
+    sh = ss.insertSheet(REMIND_SHEET);
+    sh.getRange(1, 1, 1, REMIND_HEADERS.length).setValues([REMIND_HEADERS]).setFontWeight('bold').setBackground('#F6E3D8');
+    sh.setFrozenRows(1);
+    sh.setRightToLeft(true);
+  }
+  return sh;
 }
 
 /** E-mail (and optionally WhatsApp) alert to Annabelle. Never blocks a registration. */
