@@ -673,3 +673,4 @@ html.reg-open .float-cta, html.reg-open .wa-float { display: none !important; }
 .remind__alt a { color: var(--clay); font-weight: 700; }
 .reg--exit .remind__form { margin-top: .6em; }
 .hero__tagline { text-wrap: balance; } .hero__tagline .nw { white-space: nowrap; }
+.hero__friend { margin: .9em 0 0; font-weight: 700; font-size: 1.02rem; color: #FAF8F3; } .friend-perk--light { color: var(--glow); }
