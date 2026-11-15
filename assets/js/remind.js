@@ -80,7 +80,7 @@
   const reg = $("#register");
   const start = Date.now();
   const qs = new URLSearchParams(location.search);
-  const blocked = () => store(DONE) || store(SHOWN) || store(REG) || qs.has("register") || qs.has("with") ||
+  const blocked = () => document.documentElement.classList.contains("is-full") || store(DONE) || store(SHOWN) || store(REG) || qs.has("register") || qs.has("with") ||
     (reg && reg.hasAttribute("open")) || document.querySelector("dialog[open]") || Date.now() - start < 12000;
   function show() {
     if (blocked()) return;

@@ -218,8 +218,29 @@
   $$("[data-with-friend]").forEach((b) => b.addEventListener("click", () => startWithFriend()));
 
   // arriving from a friend's invite (?with=NAME): open the form with the friend price ready
+  // ---- registration full: every sign-up button opens the "full" message instead of the form ----
+  if (EV.full) {
+    document.documentElement.classList.add("is-full");
+    const fullDlg = $("#full");
+    const groupLink = $("[data-full-group]", fullDlg);
+    groupLink.href = EV.fullGroup || ("https://wa.me/" + EV.whatsappPhone + "?text=" +
+      encodeURIComponent("היי אנאבל, ראיתי שההרשמה לערב מלאה. אשמח להצטרף לקבוצה שבה את מפרסמת את האירועים הבאים 💛"));
+    const openFull = () => { if (typeof fullDlg.showModal === "function") fullDlg.showModal(); else fullDlg.setAttribute("open", ""); };
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest("[data-open-register], [data-friend-perk]")) return;
+      e.preventDefault(); e.stopPropagation();
+      const other = document.querySelector("dialog[open]:not(#full)"); if (other) other.close();
+      openFull();
+    }, true);
+    $(".reg__close", fullDlg).addEventListener("click", () => fullDlg.close());
+    fullDlg.addEventListener("click", (e) => { if (e.target === fullDlg) fullDlg.close(); });
+    $$(".btn[data-open-register]").forEach((b) => { if (!b.closest("dialog")) b.textContent = "ההרשמה מלאה"; });
+    const q = new URLSearchParams(location.search);
+    if (q.has("register") || q.has("with") || location.hash === "#register") setTimeout(openFull, 600);
+  }
+
   const invitedBy = new URLSearchParams(location.search).get("with");
-  if (invitedBy) setTimeout(() => {
+  if (invitedBy && !EV.full) setTimeout(() => {
     startWithFriend(invitedBy.slice(0, 40));
     if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
     showStep(0);
@@ -228,7 +249,7 @@
 
   // direct link to the form: ?register (or #register) opens it on arrival
   const qsReg = new URLSearchParams(location.search);
-  if (!invitedBy && (qsReg.has("register") || location.hash === "#register")) setTimeout(() => {
+  if (!EV.full && !invitedBy && (qsReg.has("register") || location.hash === "#register")) setTimeout(() => {
     if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
     showStep(0);
   }, 600);

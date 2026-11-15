@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Assistant:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/style.css?v=20261115b">
+  <link rel="stylesheet" href="../../assets/css/style.css?v=20261115c">
 
   <script>
     /* ===== Event settings: edit here ===== */
@@ -43,7 +43,11 @@
       later: null,
       // Google Apps Script web-app URL that saves registrations to a Google Sheet (see apps-script/README.md)
       sheetEndpoint: "https://script.google.com/macros/s/AKfycbyaLSPYyPAS6K3epxwnex7vxv6HFdFabfDW6fXOlYTtv9wOuFW1PM8F-OgExNPnTjtp/exec",
-      whatsappPhone: "972525826993"
+      whatsappPhone: "972525826993",
+      // Registration full: set to true when 20 have signed up. Every sign-up button then shows
+      // "ההרשמה מלאה" and invites her to the WhatsApp group below instead of the form.
+      full: false,
+      fullGroup: ""   // TODO: link to the WhatsApp group for future events
     };
   </script>
 </head>
@@ -414,6 +418,19 @@
     </div>
   </dialog>
 
+  <dialog class="reg reg--full" id="full" aria-labelledby="full-title">
+    <div class="reg__head">
+      <button class="reg__close" type="button" aria-label="סגירה">×</button>
+      <h2 id="full-title">ההרשמה מלאה 💛</h2>
+      <p>יום חמישי 19.11 · תלמי אלעזר</p>
+    </div>
+    <div class="reg__body">
+      <p>כל המקומות לערב הזה כבר נתפסו, ואני מאוד שמחה שרצית להצטרף.</p>
+      <p>בקבוצת הוואטסאפ שלי אני מפרסמת ראשונה את האירועים הבאים, כך שתוכלי לשמור לך מקום בזמן.</p>
+      <a class="btn btn--lg btn--block" data-full-group href="#" target="_blank" rel="noopener">להצטרפות לקבוצה</a>
+    </div>
+  </dialog>
+
   <dialog class="reg" id="register" aria-labelledby="reg-title">
     <div class="reg__head">
       <button class="reg__close" type="button" aria-label="סגירה">×</button>
@@ -508,8 +525,8 @@
   </dialog>
 
   <script src="../../assets/js/spiral.js?v=20261029c"></script>
-  <script src="../../assets/js/event.js?v=20261115a"></script>
+  <script src="../../assets/js/event.js?v=20261115b"></script>
   <script src="../../assets/js/stats.js?v=20261115c"></script>
-  <script src="../../assets/js/remind.js?v=20261114a"></script>
+  <script src="../../assets/js/remind.js?v=20261115b"></script>
 </body>
 </html>

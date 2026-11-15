@@ -674,3 +674,6 @@ html.reg-open .float-cta, html.reg-open .wa-float { display: none !important; }
 .reg--exit .remind__form { margin-top: .6em; }
 .hero__tagline { text-wrap: balance; } .hero__tagline .nw { white-space: nowrap; }
 .hero__friend { margin: .9em 0 0; font-weight: 700; font-size: 1.02rem; color: #FAF8F3; } .friend-perk--light { color: var(--glow); }
+/* registration full */
+.is-full .float-cta, .is-full .hero__friend, .is-full .friend-note, .is-full .friend-panel, .is-full .ticket__friend, .is-full #remind { display: none !important; }
+.reg--full .reg__body p { margin: 0 0 .9em; line-height: 1.7; }

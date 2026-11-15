@@ -15,7 +15,7 @@ const COL = { id: 2, method: 9, status: 10, paid: 11, confirm: 13, email: 14 };
 // Where sign-up alerts go
 const NOTIFY_EMAIL = 'memmiconsulting@gmail.com';
 // Special e-mail when the number of registrations reaches each of these
-const MILESTONES = [15, 18, 20];
+const MILESTONES = [20, 25, 30];
 // Optional WhatsApp alerts to yourself via CallMeBot (leave empty to skip)
 const CALLMEBOT_PHONE = '';   // e.g. '972525826993'
 const CALLMEBOT_APIKEY = '';  // the key CallMeBot sends you
