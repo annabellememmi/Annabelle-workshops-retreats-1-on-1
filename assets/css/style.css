@@ -672,3 +672,4 @@ html.reg-open .float-cta, html.reg-open .wa-float { display: none !important; }
 .remind__alt { margin: 1.1em 0 0; text-align: center; font-size: .95rem; }
 .remind__alt a { color: var(--clay); font-weight: 700; }
 .reg--exit .remind__form { margin-top: .6em; }
+.hero__tagline { text-wrap: balance; } .hero__tagline .nw { white-space: nowrap; }
