@@ -31,7 +31,7 @@ const SECTIONS = [
   ['voices', 'משתתפות משתפות'], ['workshops', 'הסדנאות'] // added later, so their columns are last
 ];
 // the order the sections appear on the page (for the e-mail report)
-const PAGE_ORDER = ['top', 'about', 'workshops', 'story', 'taste', 'voices', 'agenda', 'venue', 'faq', 'tickets', 'contact'];
+const PAGE_ORDER = ['top', 'workshops', 'about', 'story', 'taste', 'voices', 'agenda', 'venue', 'faq', 'tickets', 'contact'];
 const VISIT_HEADERS = ['תאריך', 'מזהה ביקור', 'מבקרת', 'חוזרת?', 'מקור', 'מכשיר', 'שניות בדף', 'גלילה %', 'פתחה טופס?']
   .concat(SECTIONS.map(([, he]) => 'שניות: ' + he));
 
