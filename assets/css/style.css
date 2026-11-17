@@ -677,3 +677,11 @@ html.reg-open .float-cta, html.reg-open .wa-float { display: none !important; }
 /* registration full */
 .is-full .float-cta, .is-full .hero__friend, .is-full .friend-note, .is-full .friend-panel, .is-full .ticket__friend, .is-full #remind { display: none !important; }
 .reg--full .reg__body p { margin: 0 0 .9em; line-height: 1.7; }
+/* bring-a-friend as a real button */
+.btn--perk { background: transparent; color: var(--glow); box-shadow: inset 0 0 0 2px var(--glow); font-weight: 800; }
+.btn--perk:hover { background: rgba(232, 180, 142, .14); }
+.hero .btn--perk { display: inline-flex; margin-top: 1.1em; }
+.btn--perk-dark { color: var(--clay); box-shadow: inset 0 0 0 2px var(--clay); background: #F7EADF; }
+.btn--perk-dark:hover { background: #F2DFCF; }
+.friend-note .btn--perk { font-size: 1.02rem; }
+.hero .btn--perk { display: flex; width: fit-content; margin: 14px auto 0; white-space: nowrap; font-size: 1.02rem; padding-inline: 1.5em; }
