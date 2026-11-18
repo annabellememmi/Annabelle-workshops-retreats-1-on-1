@@ -685,3 +685,5 @@ html.reg-open .float-cta, html.reg-open .wa-float { display: none !important; }
 .btn--perk-dark:hover { background: #F2DFCF; }
 .friend-note .btn--perk { font-size: 1.02rem; }
 .hero .btn--perk { display: flex; width: fit-content; margin: 14px auto 0; white-space: nowrap; font-size: 1.02rem; padding-inline: 1.5em; }
+/* special-offer link: friend perk does not stack with it */
+.has-deal .hero__friend, .has-deal .friend-note, .has-deal .friend-panel, .has-deal .ticket__friend, .has-deal .field--friend { display: none !important; }

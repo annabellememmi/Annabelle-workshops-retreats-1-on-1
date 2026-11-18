@@ -23,6 +23,15 @@
     else el.textContent = `מחיר מוקדמות ${EV.ticket.price} ₪`;
   });
 
+  // special-offer link (?deal=20): the whole page and the form show the discounted price
+  const dealCode = new URLSearchParams(location.search).get("deal");
+  const special = EV.discount && dealCode && dealCode === EV.discount.code ? EV.discount : null;
+  if (special) {
+    document.documentElement.classList.add("has-deal");
+    $$("[data-price]").forEach((el) => (el.textContent = special.price));
+    $$("[data-price-label]").forEach((el) => (el.textContent = "מחיר מיוחד · 20% הנחה"));
+  }
+
   /* ---------- videos start by themselves when they scroll into view ----------
      Muted autoplay is allowed everywhere, but some phones (e.g. iPhone in Low Power Mode)
      still hold it back, so we call play() ourselves when a video is on screen, retry on the
@@ -199,7 +208,7 @@
     friendField.hidden = !friendToggle.checked;
     if (friendToggle.checked) $("input", friendField).focus();
   });
-  const priceNow = () => (withFriend() ? EV.friend : tier);
+  const priceNow = () => (special || (withFriend() ? EV.friend : tier));
   let invited = null; // { me, friend } when she registered with a friend
 
   // "מחכה לכן הטבה" opens a small panel
@@ -249,7 +258,7 @@
 
   // direct link to the form: ?register (or #register) opens it on arrival
   const qsReg = new URLSearchParams(location.search);
-  if (!EV.full && !invitedBy && (qsReg.has("register") || location.hash === "#register")) setTimeout(() => {
+  if (!EV.full && !invitedBy && (qsReg.has("register") || special || location.hash === "#register")) setTimeout(() => {
     if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
     showStep(0);
   }, 600);
@@ -264,6 +273,7 @@
     const deal = priceNow();
     invited = withFriend() ? { me: data.name.trim().split(" ")[0], friend: data.friend.trim() } : null;
     if (withFriend()) data.from = data.from + " · מגיעה עם חברה: " + data.friend.trim();
+    if (special) data.from = data.from + " · 20% הנחה";
     delete data.withfriend;
     delete data.friend;
     data.phone = normalizePhone(data.phone);
@@ -302,7 +312,7 @@
   }));
   function setPayment(deal) {
     $$(".pay-summary [data-price]", dlg).forEach((el) => (el.textContent = deal.price));
-    $$(".pay-summary [data-price-label]", dlg).forEach((el) => (el.textContent = deal === tier ? tierName : "מחיר עם חברה"));
+    $$(".pay-summary [data-price-label]", dlg).forEach((el) => (el.textContent = deal === tier ? tierName : deal === special ? "מחיר מיוחד · 20% הנחה" : "מחיר עם חברה"));
     $$("[data-pay]", dlg).forEach((link) => {
       const url = deal[link.dataset.pay];
       link.hidden = !url;
@@ -318,7 +328,7 @@
         `<p class="pay-tip pay-tip--soon">התשלום בקרוב יעלה לכאן. בינתיים <a href="https://wa.me/${EV.whatsappPhone}">כתבי לי בוואטסאפ</a> ואשמור לך מקום 💛</p>`);
     }
   }
-  setPayment(tier);
+  setPayment(special || tier);
   $("[data-paid]", dlg).addEventListener("click", () => {
     send({ action: "paid_reported", id: regId });
     const box = $("[data-friend-invite]", dlg);
