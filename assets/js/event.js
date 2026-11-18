@@ -296,7 +296,7 @@
     if (backup) {
       backup.hidden = saved;
       const msg = "היי אנאבל, נרשמתי למיני ריטריט ״מתחברת חזרה לעצמך באהבה״ 🌿\n" +
-        "שם: " + data.name + "\nטלפון: " + data.phone + "\nאימייל: " + data.email +
+        "שם: " + data.name + "\nטלפון: " + data.phone +
         "\nמאיפה: " + data.from + "\nמה הייתי רוצה להעז: " + data.expectation;
       $("a", backup).href = "https://wa.me/" + EV.whatsappPhone + "?text=" + encodeURIComponent(msg);
     }
