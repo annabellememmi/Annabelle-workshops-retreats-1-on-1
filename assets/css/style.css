@@ -687,3 +687,11 @@ html.reg-open .float-cta, html.reg-open .wa-float { display: none !important; }
 .hero .btn--perk { display: flex; width: fit-content; margin: 14px auto 0; white-space: nowrap; font-size: 1.02rem; padding-inline: 1.5em; }
 /* special-offer link: friend perk does not stack with it */
 .has-deal .hero__friend, .has-deal .friend-note, .has-deal .friend-panel, .has-deal .ticket__friend, .has-deal .field--friend { display: none !important; }
+/* past event: registration closed, the page stays as a record */
+.past-only { display: none; }
+.is-past .past-only { display: block; }
+.is-past .hero [data-open-register], .is-past .hero__price, .is-past .invite [data-open-register], .is-past .friend-note,
+.is-past .friend-panel, .is-past .float-cta, .is-past #tickets, .is-past #faq, .is-past #remind { display: none !important; }
+.past-note { margin-top: 1.4em; }
+.past-note__tag { display: inline-block; margin: 0 0 .8em; padding: 6px 18px; border-radius: 999px; background: rgba(232, 180, 142, .22); color: var(--glow); font-weight: 800; letter-spacing: .04em; }
+.past-note p { color: var(--cream); }

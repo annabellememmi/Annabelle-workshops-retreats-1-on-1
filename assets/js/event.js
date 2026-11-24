@@ -160,6 +160,7 @@
 
   $$("[data-open-register]").forEach((b) => b.addEventListener("click", (e) => {
     e.preventDefault();
+    if (EV.past) return;
     if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
     if (!regId) showStep(0);
     setTimeout(() => { const f = $("input", dlg); if (f && !regId) f.focus(); }, 50);
@@ -249,7 +250,7 @@
   }
 
   const invitedBy = new URLSearchParams(location.search).get("with");
-  if (invitedBy && !EV.full) setTimeout(() => {
+  if (invitedBy && !EV.full && !EV.past) setTimeout(() => {
     startWithFriend(invitedBy.slice(0, 40));
     if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
     showStep(0);
@@ -258,7 +259,7 @@
 
   // direct link to the form: ?register (or #register) opens it on arrival
   const qsReg = new URLSearchParams(location.search);
-  if (!EV.full && !invitedBy && (qsReg.has("register") || special || location.hash === "#register")) setTimeout(() => {
+  if (!EV.full && !EV.past && !invitedBy && (qsReg.has("register") || special || location.hash === "#register")) setTimeout(() => {
     if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
     showStep(0);
   }, 600);
