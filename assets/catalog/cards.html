@@ -76,6 +76,13 @@
   #c9 .ol { top: 150px; }
   #c9 .photo { top: 165px; }
   #c9 .foot--olim { bottom: 140px; }
+  #c9 .foot--olim { left: 80px; right: 80px; }
+  #c9 .foot--olim > div { width: 100%; }
+  .two { display: flex; direction: rtl; align-items: stretch; gap: 34px; margin-top: 18px; }
+  .two p { flex: 1; margin: 0 !important; font-size: 22px; line-height: 1.5; }
+  .two .two__he { text-align: right !important; }
+  .two .two__fr { text-align: left !important; }
+  .two__line { flex: none; width: 1.5px; background: rgba(65,91,68,.35); }
 </style>
 </head>
 <body>
@@ -137,8 +144,11 @@
   <div class="rule"></div>
   <div class="foot foot--olim"><img src="../img/logo-white.png" alt=""><div>
     <b>Annabelle Memmi · אנאבל ממי</b>
-    <p dir="ltr">J’accompagne les olim de France dans leur intégration, avec bienveillance et sur mesure. Arrivée moi-même en Israël enfant avec ma famille, je connais ce chemin, ses obstacles et le choc des différences de mentalité.</p>
-    <p>מלווה עולים מצרפת בהשתלבות, בחום ובהתאמה אישית. עליתי בעצמי לישראל כילדה עם המשפחה שלי, ואני מכירה את הדרך, את המכשולים ואת ההלם מהפערים במנטליות.</p>
+    <div class="two">
+      <p class="two__he">מלווה עולים מצרפת בהשתלבות, בחום ובהתאמה אישית. עליתי בעצמי לישראל כילדה עם המשפחה שלי, ואני מכירה את הדרך, את המכשולים ואת ההלם מהפערים במנטליות.</p>
+      <i class="two__line"></i>
+      <p class="two__fr" dir="ltr">J’accompagne les olim de France dans leur intégration, avec bienveillance et sur mesure. Arrivée moi-même en Israël enfant avec ma famille, je connais ce chemin, ses obstacles et le choc des différences de mentalité.</p>
+    </div>
   </div></div>
 </div>
 
