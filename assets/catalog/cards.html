@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Frank+Ruhl+Libre:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; }
+  body { display: flex; flex-wrap: wrap; gap: 20px; padding: 20px; background: #ccc; }
+  .card { position: relative; width: 1080px; height: 1080px; overflow: hidden; box-sizing: border-box; padding: 96px 96px 0;
+          font-family: Assistant, sans-serif; display: flex; flex-direction: column; justify-content: center; padding-bottom: 230px; }
+  .kicker { margin: 0; font-weight: 800; font-size: 30px; letter-spacing: .16em; }
+  h1 { margin: 26px 0 0; font-family: "Frank Ruhl Libre", serif; font-weight: 300; font-size: 104px; line-height: 1.05; }
+  h1 em { font-style: normal; font-weight: 400; }
+  .sub { margin: 30px 0 0; font-size: 38px; font-weight: 600; line-height: 1.4; max-width: 820px; }
+  .fr { margin: 18px 0 0; font-size: 34px; font-style: italic; direction: ltr; text-align: right; opacity: .85; }
+  .pill { display: inline-block; margin-top: 40px; padding: 14px 34px; border-radius: 999px; font-weight: 800; font-size: 34px; align-self: flex-start; }
+  .foot { position: absolute; left: 96px; right: 96px; bottom: 70px; display: flex; align-items: center; gap: 24px; }
+  .foot img { width: 92px; height: 92px; }
+  .foot p { margin: 0; font-size: 26px; line-height: 1.35; }
+  .foot b { display: block; font-size: 32px; font-weight: 800; }
+  .rule { position: absolute; left: 96px; right: 96px; bottom: 196px; height: 1.5px; }
+  .photo { position: absolute; left: 70px; top: 230px; width: 400px; height: 400px; border-radius: 50%; object-fit: cover; object-position: 50% 28%; }
+
+  /* families */
+  .intro { background: radial-gradient(ellipse 70% 60% at 20% 40%, rgba(232,180,142,.35), transparent 70%), #FAF8F3; color: #2F3A32; }
+  .intro .kicker, .intro h1 em { color: #B8794F; }
+  .intro .pill { background: #C67C47; color: #FAF8F3; }
+  .intro .rule { background: rgba(184,121,79,.4); }
+  .intro .photo { box-shadow: 0 0 0 10px #FAF8F3, 0 0 0 12px rgba(184,121,79,.5), 0 30px 60px -20px rgba(85,44,39,.45); }
+
+  .olim { background: radial-gradient(ellipse 80% 60% at 15% 85%, rgba(168,181,145,.55), transparent 70%), linear-gradient(160deg, #F3F2EA, #E3E8D9); color: #2B3A2E; }
+  .olim .kicker, .olim h1 em { color: #61825E; }
+  .olim .pill { background: #415B44; color: #FAF8F3; }
+  .olim .rule { background: rgba(65,91,68,.35); }
+  .olim .photo { box-shadow: 0 0 0 10px #F3F2EA, 0 0 0 12px rgba(65,91,68,.45), 0 30px 60px -20px rgba(35,44,38,.4); }
+
+  .biz { background: radial-gradient(ellipse 70% 60% at 85% 10%, rgba(232,180,142,.35), transparent 70%), linear-gradient(165deg, #8B5D50, #552C27 75%); color: #FAF8F3; }
+  .biz .kicker, .biz h1 em { color: #E8B48E; }
+  .biz .pill { background: #E8B48E; color: #552C27; }
+  .biz .rule { background: rgba(232,180,142,.45); }
+
+  .org { background: radial-gradient(ellipse 70% 60% at 85% 15%, rgba(97,130,94,.45), transparent 70%), linear-gradient(165deg, #2E3B32, #1C241F 80%); color: #FAF8F3; }
+  .org .kicker, .org h1 em { color: #A8B591; }
+  .org .pill { background: #A8B591; color: #1C241F; }
+  .org .rule { background: rgba(168,181,145,.4); }
+
+  .light .foot img { filter: brightness(0) saturate(100%) invert(19%) sepia(10%) saturate(800%) hue-rotate(80deg); }
+</style>
+</head>
+<body>
+
+<div class="card intro light" id="c1">
+  <p class="kicker">נעים להכיר</p>
+  <h1>פגישת<br><em>היכרות</em></h1>
+  <p class="sub" style="max-width:500px">20 דקות להכיר, להבין מה את צריכה, ולבדוק אם זה מתאים</p>
+  <span class="pill">חינם</span>
+  <img class="photo" src="annabelle-blue.jpg" alt="">
+  <div class="rule"></div>
+  <div class="foot"><img src="../img/logo-white.png" alt=""><p><b>אנאבל ממי</b>ליווי אנשים וארגונים בתהליכי שינוי וצמיחה</p></div>
+</div>
+
+<div class="card olim light" id="c2">
+  <p class="kicker">עולים מצרפת · OLIM DE FRANCE</p>
+  <h1>להרגיש<br><em>בבית</em><br>בישראל</h1>
+  <p class="fr" style="max-width:520px;margin-right:0">Se sentir enfin chez soi en Israël</p>
+  <span class="pill">ליווי אישי · 3 חודשים</span>
+  <img class="photo" src="annabelle-blue.jpg" alt="">
+  <div class="rule"></div>
+  <div class="foot"><img src="../img/logo-white.png" alt=""><p><b>אנאבל ממי</b>עלתה מצרפת בגיל 6 · מלווה בעברית ובצרפתית</p></div>
+</div>
+
+<div class="card olim light" id="c3">
+  <p class="kicker">עולים מצרפת · OLIM DE FRANCE</p>
+  <h1>להרגיש<br><em>בבית</em><br>בישראל</h1>
+  <p class="fr" style="max-width:520px;margin-right:0">Se sentir enfin chez soi en Israël</p>
+  <span class="pill">ליווי אישי · 6 חודשים</span>
+  <img class="photo" src="annabelle-blue.jpg" alt="">
+  <div class="rule"></div>
+  <div class="foot"><img src="../img/logo-white.png" alt=""><p><b>אנאבל ממי</b>עלתה מצרפת בגיל 6 · מלווה בעברית ובצרפתית</p></div>
+</div>
+
+<div class="card biz" id="c4">
+  <p class="kicker">לעצמאיות ולעסקים</p>
+  <h1>פגישת<br><em>פיצוח</em></h1>
+  <p class="sub">לראות בבהירות מה עוצר את העסק,<br>ולצאת עם תוכנית פעולה לחודש הקרוב</p>
+  <span class="pill">שעה וחצי עד שעתיים</span>
+  <div class="rule"></div>
+  <div class="foot"><img src="../img/logo-white.png" alt=""><p><b>אנאבל ממי</b>ליווי אנשים וארגונים בתהליכי שינוי וצמיחה</p></div>
+</div>
+
+<div class="card biz" id="c5">
+  <p class="kicker">לעצמאיות ולעסקים</p>
+  <h1>ליווי<br><em>עסקי</em></h1>
+  <p class="sub">פגישה שבועית לבנות יחד את הצעד הבא:<br>אסטרטגיה, צמיחה וביצוע</p>
+  <span class="pill">3 חודשים</span>
+  <div class="rule"></div>
+  <div class="foot"><img src="../img/logo-white.png" alt=""><p><b>אנאבל ממי</b>ליווי אנשים וארגונים בתהליכי שינוי וצמיחה</p></div>
+</div>
+
+<div class="card biz" id="c6">
+  <p class="kicker">לעצמאיות ולעסקים</p>
+  <h1>ליווי<br><em>עסקי</em></h1>
+  <p class="sub">תהליך צמיחה מלא לעסק שלך,<br>עם פגישה שבועית</p>
+  <span class="pill">6 חודשים</span>
+  <div class="rule"></div>
+  <div class="foot"><img src="../img/logo-white.png" alt=""><p><b>אנאבל ממי</b>ליווי אנשים וארגונים בתהליכי שינוי וצמיחה</p></div>
+</div>
+
+<div class="card biz" id="c7">
+  <p class="kicker">לעצמאיות ולעסקים</p>
+  <h1>פגישה<br><em>ממוקדת</em></h1>
+  <p class="sub">שעה ורבע לנושא אחד שחשוב לך עכשיו</p>
+  <span class="pill">פגישה בודדת</span>
+  <div class="rule"></div>
+  <div class="foot"><img src="../img/logo-white.png" alt=""><p><b>אנאבל ממי</b>ליווי אנשים וארגונים בתהליכי שינוי וצמיחה</p></div>
+</div>
+
+<div class="card org" id="c8">
+  <p class="kicker">לארגונים</p>
+  <h1>שינוי<br>שקורה<br><em>בפועל</em></h1>
+  <p class="sub">אבחון ארגוני · עין חיצונית על תוכנית השינוי ·<br>מנטורינג למנהלי ביניים · סדנאות לצוותים</p>
+  <span class="pill">בהתאמה אישית</span>
+  <div class="rule"></div>
+  <div class="foot"><img src="../img/logo-white.png" alt=""><p><b>אנאבל ממי</b>יועצת לשינוי וטרנספורמציה · יוצאת דלויט</p></div>
+</div>
+
+</body>
+</html>
