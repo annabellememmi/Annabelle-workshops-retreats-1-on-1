@@ -55,13 +55,22 @@
   .olim2 .t-he { margin: 22px 0 0; direction: rtl; text-align: left; font-size: 34px; font-weight: 600; color: #415B44; }
   .olim2 .pill { margin-top: 36px; font-size: 26px; padding: 12px 28px; }
   .olim2 .photo { left: auto; right: 80px; top: 190px; width: 330px; height: 330px; }
-  .olim2 .rule { bottom: 300px; }
+  .olim2 .rule { display: none; }
   .foot--olim { align-items: flex-start; bottom: 56px; }
   .foot--olim b { display: block; font-size: 28px; font-weight: 800; margin-bottom: 8px; }
   .foot--olim p { margin: 0 0 8px; font-size: 22px; line-height: 1.4; }
   .foot--olim p[dir=ltr] { text-align: left; }
   .olim2 .t-fr2 { margin: 18px 0 0; font-size: 36px; font-weight: 600; color: #2B3A2E; line-height: 1.3; }
   .olim2 .t-he { font-size: 28px; }
+  .foot--olim { left: 110px; right: 110px; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+  .foot--olim img { width: 72px; height: 72px; }
+  .foot--olim p, .foot--olim p[dir=ltr] { text-align: center; }
+  /* WhatsApp version: QR + link instead of the duration pill */
+  .wa { display: flex; align-items: center; gap: 26px; margin-top: 34px; direction: ltr; text-decoration: none; color: inherit; }
+  .wa img { width: 150px; height: 150px; background: #fff; border-radius: 16px; padding: 10px; box-shadow: 0 10px 30px -14px rgba(35,44,38,.45); }
+  .wa b { display: block; font-size: 30px; font-weight: 800; color: #2B3A2E; }
+  .wa span { display: block; font-size: 24px; color: #415B44; margin-top: 4px; }
+  .wa .he { direction: rtl; text-align: left; }
 </style>
 </head>
 <body>
@@ -109,6 +118,25 @@
     <p>מלווה עולים מצרפת בהשתלבות, בחום ובהתאמה אישית. עליתי בעצמי לישראל כילדה עם המשפחה שלי, ואני מכירה את הדרך, את המכשולים ואת ההלם מהפערים במנטליות.</p>
   </div></div>
 </div>
+
+<div class="card olim light olim2" id="c9">
+  <div class="ol">
+    <p class="kicker">OLIM DE FRANCE · עולים מצרפת</p>
+    <h2 class="t-fr">Coaching<br><em>d’intégration</em></h2>
+    <p class="t-fr2">Se sentir vraiment chez soi en Israël</p>
+    <p class="t-he">אימון להשתלבות · להרגיש באמת בבית בישראל</p>
+    <a class="wa" href="https://wa.me/972525826993?text=Bonjour%20Annabelle%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20le%20coaching%20d%E2%80%99int%C3%A9gration.%20Pouvez-vous%20m%E2%80%99en%20dire%20plus%20%3F"><img src="wa-olim-qr.svg" alt="">
+      <span><b>Écrivez-moi sur WhatsApp</b><span>Scannez ou cliquez ici</span><span class="he">לחצו או סרקו לוואטסאפ</span></span></a>
+  </div>
+  <img class="photo" src="annabelle-blue.jpg" alt="">
+  <div class="rule"></div>
+  <div class="foot foot--olim"><img src="../img/logo-white.png" alt=""><div>
+    <b>Annabelle Memmi · אנאבל ממי</b>
+    <p dir="ltr">J’accompagne les olim de France dans leur intégration, avec bienveillance et sur mesure. Arrivée moi-même en Israël enfant avec ma famille, je connais ce chemin, ses obstacles et le choc des différences de mentalité.</p>
+    <p>מלווה עולים מצרפת בהשתלבות, בחום ובהתאמה אישית. עליתי בעצמי לישראל כילדה עם המשפחה שלי, ואני מכירה את הדרך, את המכשולים ואת ההלם מהפערים במנטליות.</p>
+  </div></div>
+</div>
+
 
 <div class="card biz" id="c4">
   <p class="kicker">לעצמאיות ולעסקים</p>
